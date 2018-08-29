@@ -1,3 +1,8 @@
+*.komodoproject
+
+/log/!.gitkeep
+/public/!.gitkeep
+
 !Build/
 .last_cover_stats
 /META.yml
@@ -33,3 +38,4 @@ inc/
 /MANIFEST.bak
 /pm_to_blib
 /*.zip
+
