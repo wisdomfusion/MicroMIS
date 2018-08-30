@@ -1,0 +1,19 @@
+[Thu Aug 30 08:58:41 2018] [debug] GET "/" (67c1d39e)
+[Thu Aug 30 08:58:41 2018] [debug] Routing to a callback
+[Thu Aug 30 08:58:41 2018] [debug] 200 OK (0.001714s, 583.431/s)
+[Thu Aug 30 08:58:41 2018] [debug] GET "/robots.txt" (1c812e16)
+[Thu Aug 30 08:58:41 2018] [debug] Template "not_found.development.html.ep" not found
+[Thu Aug 30 08:58:41 2018] [debug] Template "not_found.html.ep" not found
+[Thu Aug 30 08:58:41 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 08:58:41 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 08:58:41 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 08:58:41 2018] [debug] 404 Not Found (0.026985s, 37.058/s)
+[Thu Aug 30 09:22:58 2018] [debug] GET "/" (32f47038)
+[Thu Aug 30 09:22:58 2018] [debug] Routing to a callback
+[Thu Aug 30 09:22:58 2018] [debug] 200 OK (0.001877s, 532.765/s)
+[Thu Aug 30 09:22:59 2018] [debug] GET "/robots.txt" (4fda4a84)
+[Thu Aug 30 09:22:59 2018] [debug] Template "not_found.development.html.ep" not found
+[Thu Aug 30 09:22:59 2018] [debug] Template "not_found.html.ep" not found
+[Thu Aug 30 09:22:59 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 09:22:59 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 09:22:59 2018] [debug] 404 Not Found (0.005931s, 168.606/s)
