@@ -5,8 +5,8 @@ app.conf
 
 /public
 
-/log/
-/log/!.gitkeep
+/log
+!/log/.gitkeep
 
 !Build/
 .last_cover_stats
