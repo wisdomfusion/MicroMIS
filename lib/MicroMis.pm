@@ -1,15 +1,24 @@
 package MicroMis;
 use Mojo::Base 'Mojolicious';
+use MicroMis::Plugin::AppHelpers;
+
+use strict;
+use warnings;
 
 sub startup {
-  my $self = shift;
+  my $app = shift;
 
-  my $config = $self->plugin('Config' => { file => 'app.conf' });
+  # config
+  $app->plugin('Config' => { file => 'app.conf' });
   
-  $self->static->path->[0] = './public';
+  # helpers
+  $app->plugin('MicroMis::Plugin::AppHelpers');
+  
+  # client folder './public'
+  $app->static->path->[0] = './public';
 
   # Router
-  my $r = $self->routes;
+  my $r = $app->routes;
   $r->any('/' => sub { $_[0]->reply->static('index.html') });
   
   my $api = $r->under('/api/v1' => sub { 1 });
@@ -26,6 +35,7 @@ sub startup {
   $authed->post('/user')->to('user#store');
   $authed->get('/user/:id' => [id => qr/\d+/])->to('user#show');
   $authed->put('/user/:id' => [id => qr/\d+/])->to('user#update');
+  $authed->delete('/user/:id' => [id => qr/\d+/])->to('user#destroy');
   
   # 项目
   $authed->get('/projects')->to('project#index');

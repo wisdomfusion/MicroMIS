@@ -17,3 +17,481 @@
 [Thu Aug 30 09:22:59 2018] [debug] Rendering cached template "mojo/debug.html.ep"
 [Thu Aug 30 09:22:59 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
 [Thu Aug 30 09:22:59 2018] [debug] 404 Not Found (0.005931s, 168.606/s)
+[Thu Aug 30 14:21:46 2018] [debug] POST "/api/v1/login" (974741b9)
+[Thu Aug 30 14:21:46 2018] [debug] Routing to a callback
+[Thu Aug 30 14:21:46 2018] [error] Global symbol "$self" requires explicit package name (did you forget to declare "my $self"?) at D:/github/MicroMIS/script/../lib/MicroMis/Controller/Auth.pm line 18.
+Compilation failed in require at (eval 525) line 1.
+
+[Thu Aug 30 14:21:46 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 14:21:46 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 14:21:46 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 14:21:46 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 14:21:46 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 14:21:46 2018] [debug] 500 Internal Server Error (0.024204s, 41.315/s)
+[Thu Aug 30 14:22:25 2018] [debug] POST "/api/v1/login" (50c18bd6)
+[Thu Aug 30 14:22:25 2018] [debug] Routing to a callback
+[Thu Aug 30 14:22:25 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:22:25 2018] [debug] Action not found in controller
+[Thu Aug 30 14:22:25 2018] [debug] Template "auth/login.html.ep" not found
+[Thu Aug 30 14:22:25 2018] [debug] Template "not_found.development.html.ep" not found
+[Thu Aug 30 14:22:25 2018] [debug] Template "not_found.html.ep" not found
+[Thu Aug 30 14:22:25 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 14:22:25 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 14:22:25 2018] [debug] 404 Not Found (0.004451s, 224.669/s)
+[Thu Aug 30 14:23:11 2018] [debug] POST "/api/v1/login" (89e951e4)
+[Thu Aug 30 14:23:11 2018] [debug] Routing to a callback
+[Thu Aug 30 14:23:11 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:23:11 2018] [debug] 400 Bad Request (0.001809s, 552.792/s)
+[Thu Aug 30 14:24:19 2018] [debug] POST "/api/v1/login" (cf46cc52)
+[Thu Aug 30 14:24:19 2018] [debug] Routing to a callback
+[Thu Aug 30 14:24:19 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:24:19 2018] [debug] 400 Bad Request (0.001735s, 576.369/s)
+[Thu Aug 30 14:24:56 2018] [debug] POST "/api/v1/login" (c052714a)
+[Thu Aug 30 14:24:56 2018] [debug] Routing to a callback
+[Thu Aug 30 14:24:56 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:24:56 2018] [error] Can't locate object method "jwt_encode" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 14:24:56 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 14:24:56 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 14:24:56 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 14:24:56 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 14:24:56 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 14:24:56 2018] [debug] 500 Internal Server Error (0.024148s, 41.411/s)
+[Thu Aug 30 14:27:52 2018] [debug] POST "/api/v1/login" (adc9bd32)
+[Thu Aug 30 14:27:52 2018] [debug] Routing to a callback
+[Thu Aug 30 14:27:52 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:27:52 2018] [error] Can't locate object method "jwt_encode" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 14:27:52 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 14:27:52 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 14:27:52 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 14:27:52 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 14:27:52 2018] [debug] 500 Internal Server Error (0.010849s, 92.174/s)
+[Thu Aug 30 14:27:56 2018] [debug] POST "/api/v1/login" (521a5f22)
+[Thu Aug 30 14:27:56 2018] [debug] Routing to a callback
+[Thu Aug 30 14:27:56 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:27:56 2018] [debug] 400 Bad Request (0.001525s, 655.738/s)
+[Thu Aug 30 14:28:04 2018] [debug] POST "/api/v1/login" (a2f5d140)
+[Thu Aug 30 14:28:04 2018] [debug] Routing to a callback
+[Thu Aug 30 14:28:04 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:28:04 2018] [error] Can't locate object method "jwt_encode" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 14:28:04 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 14:28:04 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 14:28:04 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 14:28:04 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 14:28:04 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 14:28:04 2018] [debug] 500 Internal Server Error (0.021627s, 46.238/s)
+[Thu Aug 30 14:58:20 2018] [debug] POST "/api/v1/login" (3ff9fce8)
+[Thu Aug 30 14:58:20 2018] [debug] Routing to a callback
+[Thu Aug 30 14:58:20 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 14:58:20 2018] [error] Can't locate object method "jwt_encode" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 14:58:20 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 14:58:20 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 14:58:20 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 14:58:20 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 14:58:20 2018] [debug] 500 Internal Server Error (0.009704s, 103.050/s)
+[Thu Aug 30 15:01:40 2018] [debug] POST "/api/v1/login" (7a6a3d4d)
+[Thu Aug 30 15:01:40 2018] [debug] Routing to a callback
+[Thu Aug 30 15:01:40 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:01:40 2018] [error] Can't locate object method "app_helpers" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:01:40 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:01:40 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:01:40 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:01:40 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:01:40 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:01:40 2018] [debug] 500 Internal Server Error (0.026113s, 38.295/s)
+[Thu Aug 30 15:03:15 2018] [debug] POST "/api/v1/login" (c5970ebe)
+[Thu Aug 30 15:03:15 2018] [debug] Routing to a callback
+[Thu Aug 30 15:03:15 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:03:15 2018] [error] Can't locate object method "app_helpers" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:03:15 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:03:15 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:03:15 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:03:15 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:03:15 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:03:15 2018] [debug] 500 Internal Server Error (0.025871s, 38.653/s)
+[Thu Aug 30 15:11:11 2018] [debug] POST "/api/v1/login" (d61ee7cc)
+[Thu Aug 30 15:11:11 2018] [debug] Routing to a callback
+[Thu Aug 30 15:11:11 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:11:11 2018] [error] Can't locate object method "app_helpers" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:11:11 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:11:11 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:11:11 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:11:11 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:11:11 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:11:11 2018] [debug] 500 Internal Server Error (0.02079s, 48.100/s)
+[Thu Aug 30 15:11:13 2018] [debug] POST "/api/v1/login" (fca5e2bd)
+[Thu Aug 30 15:11:13 2018] [debug] Routing to a callback
+[Thu Aug 30 15:11:13 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:11:13 2018] [debug] 400 Bad Request (0.001638s, 610.501/s)
+[Thu Aug 30 15:13:33 2018] [debug] POST "/api/v1/login" (7a34ef84)
+[Thu Aug 30 15:13:33 2018] [debug] Routing to a callback
+[Thu Aug 30 15:13:33 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:13:33 2018] [error] Can't locate object method "app_helpers" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:13:33 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:13:33 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:13:33 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:13:33 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:13:33 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:13:33 2018] [debug] 500 Internal Server Error (0.020436s, 48.933/s)
+[Thu Aug 30 15:14:03 2018] [debug] POST "/api/v1/login" (3f6eac25)
+[Thu Aug 30 15:14:03 2018] [debug] Routing to a callback
+[Thu Aug 30 15:14:03 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:14:03 2018] [error] Can't locate object method "micromis" via package "MicroMis" at D:/github/MicroMIS/script/../lib/MicroMis/Controller/Auth.pm line 21.
+
+[Thu Aug 30 15:14:03 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:14:03 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:14:03 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:14:03 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:14:03 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:14:03 2018] [debug] 500 Internal Server Error (0.021499s, 46.514/s)
+[Thu Aug 30 15:17:25 2018] [debug] POST "/api/v1/login" (d230e3c6)
+[Thu Aug 30 15:17:25 2018] [debug] Routing to a callback
+[Thu Aug 30 15:17:25 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:17:25 2018] [error] Can't locate object method "micromis" via package "MicroMis" at D:/github/MicroMIS/script/../lib/MicroMis/Controller/Auth.pm line 21.
+
+[Thu Aug 30 15:17:25 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:17:25 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:17:25 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 15:17:25 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 15:17:25 2018] [debug] 500 Internal Server Error (0.006326s, 158.078/s)
+[Thu Aug 30 15:17:42 2018] [debug] POST "/api/v1/login" (313db6dc)
+[Thu Aug 30 15:17:42 2018] [debug] Routing to a callback
+[Thu Aug 30 15:17:42 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:17:42 2018] [error] Can't locate object method "micromis" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:17:42 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:17:42 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:17:42 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:17:42 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:17:42 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:17:42 2018] [debug] 500 Internal Server Error (0.021367s, 46.801/s)
+[Thu Aug 30 15:19:15 2018] [debug] POST "/api/v1/login" (7e042406)
+[Thu Aug 30 15:19:15 2018] [debug] Routing to a callback
+[Thu Aug 30 15:19:15 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:19:15 2018] [error] Can't locate object method "micromis" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:19:15 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:19:15 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:19:15 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 15:19:15 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 15:19:15 2018] [debug] 500 Internal Server Error (0.007688s, 130.073/s)
+[Thu Aug 30 15:21:49 2018] [debug] POST "/api/v1/login" (a73450d9)
+[Thu Aug 30 15:21:49 2018] [debug] Routing to a callback
+[Thu Aug 30 15:21:50 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:21:50 2018] [error] Can't locate object method "jwt_encode" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:21:50 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:21:50 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:21:50 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:21:50 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:21:50 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:21:50 2018] [debug] 500 Internal Server Error (0.02201s, 45.434/s)
+[Thu Aug 30 15:22:50 2018] [debug] POST "/api/v1/login" (3a591c1e)
+[Thu Aug 30 15:22:50 2018] [debug] Routing to a callback
+[Thu Aug 30 15:22:50 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:22:50 2018] [error] Can't locate object method "jwt_encode" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:22:50 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:22:50 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:22:50 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:22:50 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:22:50 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:22:50 2018] [debug] 500 Internal Server Error (0.021774s, 45.926/s)
+[Thu Aug 30 15:26:30 2018] [debug] POST "/api/v1/login" (bce31ce0)
+[Thu Aug 30 15:26:30 2018] [debug] Routing to a callback
+[Thu Aug 30 15:26:30 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:26:30 2018] [error] Can't locate object method "jwt_encode" via package "MicroMis::Controller::Auth" at C:/Strawberry/perl/vendor/lib/Mojolicious.pm line 147.
+
+[Thu Aug 30 15:26:30 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:26:30 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:26:30 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 15:26:30 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 15:26:30 2018] [debug] 500 Internal Server Error (0.012165s, 82.203/s)
+[Thu Aug 30 15:26:52 2018] [debug] POST "/api/v1/login" (500e7c4f)
+[Thu Aug 30 15:26:52 2018] [debug] Routing to a callback
+[Thu Aug 30 15:26:52 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:26:52 2018] [error] Can't locate object method "config" via package "MicroMis::Plugin::AppHelpers" at D:/github/MicroMIS/script/../lib/MicroMis/Plugin/AppHelpers.pm line 12.
+
+[Thu Aug 30 15:26:52 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:26:52 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:26:52 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:26:52 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:26:52 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:26:52 2018] [debug] 500 Internal Server Error (0.032836s, 30.454/s)
+[Thu Aug 30 15:27:52 2018] [debug] POST "/api/v1/login" (b9544381)
+[Thu Aug 30 15:27:52 2018] [debug] Routing to a callback
+[Thu Aug 30 15:27:52 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:27:52 2018] [error] Can't locate object method "config" via package "MicroMis::Plugin::AppHelpers" at D:/github/MicroMIS/script/../lib/MicroMis/Plugin/AppHelpers.pm line 12.
+
+[Thu Aug 30 15:27:52 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:27:52 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:27:52 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 15:27:52 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 15:27:52 2018] [debug] 500 Internal Server Error (0.006832s, 146.370/s)
+[Thu Aug 30 15:28:16 2018] [debug] POST "/api/v1/login" (96aecde4)
+[Thu Aug 30 15:28:16 2018] [debug] Routing to a callback
+[Thu Aug 30 15:28:16 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:28:16 2018] [error] Can't locate object method "app" via package "MicroMis::Plugin::AppHelpers" at D:/github/MicroMIS/script/../lib/MicroMis/Plugin/AppHelpers.pm line 12.
+
+[Thu Aug 30 15:28:16 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:28:16 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:28:16 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 15:28:16 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 15:28:16 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 15:28:16 2018] [debug] 500 Internal Server Error (0.020246s, 49.392/s)
+[Thu Aug 30 15:29:37 2018] [debug] POST "/api/v1/login" (ed2ad562)
+[Thu Aug 30 15:29:37 2018] [debug] Routing to a callback
+[Thu Aug 30 15:29:37 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:29:37 2018] [error] Can't locate object method "app" via package "MicroMis::Plugin::AppHelpers" at D:/github/MicroMIS/script/../lib/MicroMis/Plugin/AppHelpers.pm line 12.
+
+[Thu Aug 30 15:29:37 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 15:29:37 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 15:29:37 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 15:29:37 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 15:29:37 2018] [debug] 500 Internal Server Error (0.005093s, 196.348/s)
+[Thu Aug 30 15:29:58 2018] [debug] POST "/api/v1/login" (d463c2ed)
+[Thu Aug 30 15:29:58 2018] [debug] Routing to a callback
+[Thu Aug 30 15:29:58 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 15:29:58 2018] [debug] 200 OK (0.001664s, 600.962/s)
+[Thu Aug 30 16:05:04 2018] [debug] POST "/api/v1/login" (01648bb6)
+[Thu Aug 30 16:05:04 2018] [debug] Routing to a callback
+[Thu Aug 30 16:05:04 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 16:05:04 2018] [debug] 200 OK (0.001888s, 529.661/s)
+[Thu Aug 30 16:08:48 2018] [debug] POST "/api/v1/login" (a0c4728d)
+[Thu Aug 30 16:08:48 2018] [debug] Routing to a callback
+[Thu Aug 30 16:08:48 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 16:08:48 2018] [debug] 200 OK (0.000833s, 1200.480/s)
+[Thu Aug 30 16:09:30 2018] [debug] POST "/api/v1/login" (f5cf0bdf)
+[Thu Aug 30 16:09:30 2018] [debug] Routing to a callback
+[Thu Aug 30 16:09:30 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Thu Aug 30 16:09:30 2018] [debug] 200 OK (0.001585s, 630.915/s)
+[Thu Aug 30 16:15:11 2018] [debug] GET "/api/v1/users" (1141bac1)
+[Thu Aug 30 16:15:11 2018] [debug] Routing to a callback
+[Thu Aug 30 16:15:11 2018] [debug] Routing to a callback
+[Thu Aug 30 16:15:11 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:15:11 2018] [error] Can't locate object method "get_collections" via package "MongoDB::Database" at D:/github/MicroMIS/script/../lib/MicroMis/Controller/User.pm line 7.
+
+[Thu Aug 30 16:15:11 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:15:11 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:15:11 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 16:15:11 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 16:15:11 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 16:15:11 2018] [debug] 500 Internal Server Error (0.077354s, 12.928/s)
+[Thu Aug 30 16:15:53 2018] [debug] GET "/api/v1/users" (62ee951c)
+[Thu Aug 30 16:15:53 2018] [debug] Routing to a callback
+[Thu Aug 30 16:15:53 2018] [debug] Routing to a callback
+[Thu Aug 30 16:15:53 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:15:53 2018] [error] Can't locate object method "get_collections" via package "MongoDB::Database" at D:/github/MicroMIS/script/../lib/MicroMis/Controller/User.pm line 7.
+
+[Thu Aug 30 16:15:53 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:15:53 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:15:53 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 16:15:53 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 16:15:53 2018] [debug] 500 Internal Server Error (0.006036s, 165.673/s)
+[Thu Aug 30 16:16:20 2018] [debug] GET "/api/v1/users" (138e2937)
+[Thu Aug 30 16:16:20 2018] [debug] Routing to a callback
+[Thu Aug 30 16:16:20 2018] [debug] Routing to a callback
+[Thu Aug 30 16:16:20 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:16:20 2018] [debug] 200 OK (0.055019s, 18.176/s)
+[Thu Aug 30 16:18:41 2018] [debug] GET "/api/v1/users" (0e9abe4c)
+[Thu Aug 30 16:18:41 2018] [debug] Routing to a callback
+[Thu Aug 30 16:18:41 2018] [debug] Routing to a callback
+[Thu Aug 30 16:18:41 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:18:41 2018] [debug] 200 OK (0.005075s, 197.044/s)
+[Thu Aug 30 16:19:07 2018] [debug] GET "/api/v1/users" (4b07201b)
+[Thu Aug 30 16:19:07 2018] [debug] Routing to a callback
+[Thu Aug 30 16:19:07 2018] [debug] Routing to a callback
+[Thu Aug 30 16:19:07 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:19:08 2018] [debug] 200 OK (0.0684129999999999s, 14.617/s)
+[Thu Aug 30 16:19:38 2018] [debug] GET "/api/v1/users" (2cc0c697)
+[Thu Aug 30 16:19:38 2018] [debug] Routing to a callback
+[Thu Aug 30 16:19:38 2018] [debug] Routing to a callback
+[Thu Aug 30 16:19:38 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:19:38 2018] [debug] 200 OK (0.05875s, 17.021/s)
+[Thu Aug 30 16:21:10 2018] [debug] GET "/api/v1/users" (d9a0482f)
+[Thu Aug 30 16:21:10 2018] [debug] Routing to a callback
+[Thu Aug 30 16:21:10 2018] [debug] Routing to a callback
+[Thu Aug 30 16:21:10 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:21:10 2018] [debug] 200 OK (0.005894s, 169.664/s)
+[Thu Aug 30 16:21:23 2018] [debug] GET "/api/v1/users" (8b5841d1)
+[Thu Aug 30 16:21:23 2018] [debug] Routing to a callback
+[Thu Aug 30 16:21:23 2018] [debug] Routing to a callback
+[Thu Aug 30 16:21:23 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:21:23 2018] [error] The value 'BSON::Timestamp=HASH(0xab36588)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:21:23 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:21:23 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:21:23 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 16:21:23 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 16:21:23 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 16:21:23 2018] [debug] 500 Internal Server Error (0.076305s, 13.105/s)
+[Thu Aug 30 16:21:47 2018] [debug] GET "/api/v1/users" (c75c117a)
+[Thu Aug 30 16:21:47 2018] [debug] Routing to a callback
+[Thu Aug 30 16:21:47 2018] [debug] Routing to a callback
+[Thu Aug 30 16:21:47 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:21:47 2018] [error] The value 'BSON::Timestamp=HASH(0x88ba7a0)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:21:47 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:21:47 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:21:47 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 16:21:47 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 16:21:47 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 16:21:47 2018] [debug] 500 Internal Server Error (0.078873s, 12.679/s)
+[Thu Aug 30 16:28:48 2018] [debug] GET "/api/v1/users" (31903121)
+[Thu Aug 30 16:28:48 2018] [debug] Routing to a callback
+[Thu Aug 30 16:28:48 2018] [debug] Routing to a callback
+[Thu Aug 30 16:28:48 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:28:48 2018] [error] The value 'BSON::Timestamp=HASH(0x88c90a8)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:28:48 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:28:48 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:28:48 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 16:28:48 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 16:28:48 2018] [debug] 500 Internal Server Error (0.014511s, 68.913/s)
+[Thu Aug 30 16:32:37 2018] [debug] GET "/api/v1/users" (f111763f)
+[Thu Aug 30 16:32:37 2018] [debug] Routing to a callback
+[Thu Aug 30 16:32:37 2018] [debug] Routing to a callback
+[Thu Aug 30 16:32:37 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:32:37 2018] [error] The value 'BSON::Timestamp=HASH(0xc7c4068)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:32:37 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:32:37 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:32:37 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 16:32:37 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 16:32:37 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 16:32:37 2018] [debug] 500 Internal Server Error (0.079785s, 12.534/s)
+[Thu Aug 30 16:33:01 2018] [debug] GET "/api/v1/users" (bd6f5dcf)
+[Thu Aug 30 16:33:01 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:01 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:01 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:33:01 2018] [error] The value 'BSON::Timestamp=HASH(0x885dc68)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:33:01 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:33:01 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:33:01 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 16:33:01 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 16:33:01 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 16:33:01 2018] [debug] 500 Internal Server Error (0.076882s, 13.007/s)
+[Thu Aug 30 16:33:34 2018] [debug] GET "/api/v1/users" (db735740)
+[Thu Aug 30 16:33:34 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:34 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:34 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:33:34 2018] [error] The value 'BSON::Timestamp=HASH(0x8869968)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:33:34 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:33:34 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:33:34 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 16:33:34 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 16:33:34 2018] [debug] 500 Internal Server Error (0.011813s, 84.653/s)
+[Thu Aug 30 16:33:43 2018] [debug] GET "/api/v1/users" (e3001a45)
+[Thu Aug 30 16:33:43 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:43 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:43 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:33:43 2018] [error] The value 'BSON::Timestamp=HASH(0x887f348)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:33:43 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:33:43 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:33:43 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 16:33:43 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 16:33:43 2018] [debug] 500 Internal Server Error (0.012971s, 77.095/s)
+[Thu Aug 30 16:33:43 2018] [debug] GET "/api/v1/users" (d09d01fb)
+[Thu Aug 30 16:33:43 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:43 2018] [debug] Routing to a callback
+[Thu Aug 30 16:33:43 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:33:43 2018] [error] The value 'BSON::Timestamp=HASH(0xa9a26d0)' is illegal in JSON at C:/Strawberry/perl/vendor/lib/Mojo/JSON.pm line 245.
+
+[Thu Aug 30 16:33:43 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:33:43 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:33:43 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 16:33:43 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 16:33:43 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 16:33:43 2018] [debug] 500 Internal Server Error (0.070107s, 14.264/s)
+[Thu Aug 30 16:50:56 2018] [debug] GET "/api/v1/users" (bf7f8c1b)
+[Thu Aug 30 16:50:56 2018] [debug] Routing to a callback
+[Thu Aug 30 16:50:56 2018] [debug] Routing to a callback
+[Thu Aug 30 16:50:56 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:50:56 2018] [debug] 200 OK (0.06455s, 15.492/s)
+[Thu Aug 30 16:51:21 2018] [debug] GET "/api/v1/users" (0558b41e)
+[Thu Aug 30 16:51:21 2018] [debug] Routing to a callback
+[Thu Aug 30 16:51:21 2018] [debug] Routing to a callback
+[Thu Aug 30 16:51:21 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:51:21 2018] [error] Can't call method "all" on unblessed reference at D:/github/MicroMIS/script/../lib/MicroMis/Controller/User.pm line 8.
+
+[Thu Aug 30 16:51:21 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 16:51:21 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 16:51:21 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 16:51:21 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 16:51:21 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 16:51:21 2018] [debug] 500 Internal Server Error (0.07802s, 12.817/s)
+[Thu Aug 30 16:52:20 2018] [debug] GET "/api/v1/users" (65318e00)
+[Thu Aug 30 16:52:20 2018] [debug] Routing to a callback
+[Thu Aug 30 16:52:20 2018] [debug] Routing to a callback
+[Thu Aug 30 16:52:20 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:52:20 2018] [debug] 200 OK (0.061221s, 16.334/s)
+[Thu Aug 30 16:52:46 2018] [debug] GET "/api/v1/users" (815d0e93)
+[Thu Aug 30 16:52:46 2018] [debug] Routing to a callback
+[Thu Aug 30 16:52:46 2018] [debug] Routing to a callback
+[Thu Aug 30 16:52:46 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:52:46 2018] [debug] 200 OK (0.054012s, 18.514/s)
+[Thu Aug 30 16:52:55 2018] [debug] GET "/api/v1/users" (3dfb5702)
+[Thu Aug 30 16:52:55 2018] [debug] Routing to a callback
+[Thu Aug 30 16:52:55 2018] [debug] Routing to a callback
+[Thu Aug 30 16:52:55 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 16:52:55 2018] [debug] 200 OK (0.004471s, 223.664/s)
+[Thu Aug 30 17:03:58 2018] [debug] GET "/api/v1/users" (85e78368)
+[Thu Aug 30 17:03:58 2018] [debug] Routing to a callback
+[Thu Aug 30 17:03:58 2018] [debug] Routing to a callback
+[Thu Aug 30 17:03:58 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 17:03:58 2018] [debug] 200 OK (0.059122s, 16.914/s)
+[Thu Aug 30 17:04:38 2018] [debug] GET "/api/v1/users" (ae98665c)
+[Thu Aug 30 17:04:38 2018] [debug] Routing to a callback
+[Thu Aug 30 17:04:38 2018] [debug] Routing to a callback
+[Thu Aug 30 17:04:38 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 17:04:38 2018] [error] Can't call method "fields" on unblessed reference at D:/github/MicroMIS/script/../lib/MicroMis/Controller/User.pm line 8.
+
+[Thu Aug 30 17:04:38 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 17:04:38 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 17:04:38 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 17:04:38 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 17:04:38 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 17:04:38 2018] [debug] 500 Internal Server Error (0.074984s, 13.336/s)
+[Thu Aug 30 17:05:03 2018] [debug] GET "/api/v1/users" (d01e79a0)
+[Thu Aug 30 17:05:03 2018] [debug] Routing to a callback
+[Thu Aug 30 17:05:03 2018] [debug] Routing to a callback
+[Thu Aug 30 17:05:03 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 17:05:03 2018] [error] Can't call method "fields" on unblessed reference at D:/github/MicroMIS/script/../lib/MicroMis/Controller/User.pm line 8.
+
+[Thu Aug 30 17:05:03 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 17:05:03 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 17:05:03 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Thu Aug 30 17:05:03 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Thu Aug 30 17:05:03 2018] [debug] Your secret passphrase needs to be changed
+[Thu Aug 30 17:05:03 2018] [debug] 500 Internal Server Error (0.072716s, 13.752/s)
+[Thu Aug 30 17:09:27 2018] [debug] GET "/api/v1/users" (2d369d69)
+[Thu Aug 30 17:09:27 2018] [debug] Routing to a callback
+[Thu Aug 30 17:09:27 2018] [debug] Routing to a callback
+[Thu Aug 30 17:09:27 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 17:09:27 2018] [error] Can't call method "fields" on unblessed reference at D:/github/MicroMIS/script/../lib/MicroMis/Controller/User.pm line 8.
+
+[Thu Aug 30 17:09:27 2018] [debug] Template "exception.development.html.ep" not found
+[Thu Aug 30 17:09:27 2018] [debug] Template "exception.html.ep" not found
+[Thu Aug 30 17:09:27 2018] [debug] Rendering cached template "mojo/debug.html.ep"
+[Thu Aug 30 17:09:27 2018] [debug] Rendering cached template "mojo/menubar.html.ep"
+[Thu Aug 30 17:09:27 2018] [debug] 500 Internal Server Error (0.011589s, 86.289/s)
+[Thu Aug 30 17:09:33 2018] [debug] GET "/api/v1/users" (86385ef3)
+[Thu Aug 30 17:09:33 2018] [debug] Routing to a callback
+[Thu Aug 30 17:09:33 2018] [debug] Routing to a callback
+[Thu Aug 30 17:09:33 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 17:09:33 2018] [debug] 200 OK (0.059272s, 16.871/s)
+[Thu Aug 30 17:09:33 2018] [debug] GET "/api/v1/users" (3ff7cb23)
+[Thu Aug 30 17:09:33 2018] [debug] Routing to a callback
+[Thu Aug 30 17:09:33 2018] [debug] Routing to a callback
+[Thu Aug 30 17:09:33 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Thu Aug 30 17:09:33 2018] [debug] 200 OK (0.053784s, 18.593/s)
