@@ -1,11 +1,13 @@
 *.komodoproject
+.komodotools
 .idea
+*.swp
 
 app.conf
 
 /public
 
-/log
+/log/*
 !/log/.gitkeep
 
 !Build/
