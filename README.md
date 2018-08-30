@@ -2,9 +2,11 @@
 
 **Micro Management Information System** for information with dynamic fields, using Perl and [Mojolicious](https://mojolicious.org/), with MongoDB as backend database.
 
-## INSTALLATION
+## 1. INSTALLATION
 
-### Install Perl on macOS or Linux
+### 1.1 Install Perl
+
+**macOS or Linux**
 
 ```sh
 $ \curl -L https://install.perlbrew.pl | bash
@@ -17,15 +19,15 @@ $ perlbrew install-cpanm
 ```
 
 
-### Install Perl on Windows
+**Windows**
 
-Install [Strawberry Perl](http://strawberryperl.com/) or [ActiveState Perl](http://www.activestate.com/activeperl/downloads) first.
+Install [Strawberry Perl](http://strawberryperl.com/) or [ActiveState Perl](http://www.activestate.com/activeperl/downloads) first, and
 
 ```sh
 cpan App::cpanminus
 ```
 
-### Init and run the application
+### 1.2 Init and run the application
 
 ```sh
 $ cd MicroMIS/
@@ -33,7 +35,9 @@ $ cpanm --installdeps .
 $ morbo script/app.pl
 ```
 
-### Client Interface (React)
+### 1.3 Client Interface (React)
+
+Install node.js 8+ first, and
 
 ```sh
 cd client/
@@ -41,3 +45,9 @@ npm i yarn
 yarn install
 yarn build
 ```
+
+## 2. INSTRUCTIONS
+
+
+## 3. CONTRIBUTIONS
+
