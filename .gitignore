@@ -1,8 +1,11 @@
 *.komodoproject
 .idea
 
+app.conf
+
 /public
 
+/log/
 /log/!.gitkeep
 
 !Build/

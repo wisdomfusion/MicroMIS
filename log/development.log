@@ -495,3 +495,31 @@ Compilation failed in require at (eval 525) line 1.
 [Thu Aug 30 17:09:33 2018] [debug] Routing to a callback
 [Thu Aug 30 17:09:33 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
 [Thu Aug 30 17:09:33 2018] [debug] 200 OK (0.053784s, 18.593/s)
+[Fri Aug 31 07:34:17 2018] [debug] POST "/api/v1/login" (59bc905b)
+[Fri Aug 31 07:34:17 2018] [debug] Routing to a callback
+[Fri Aug 31 07:34:17 2018] [debug] Routing to controller "MicroMis::Controller::Auth" and action "login"
+[Fri Aug 31 07:34:17 2018] [debug] 400 Bad Request (0.00241s, 414.938/s)
+[Fri Aug 31 07:34:40 2018] [debug] GET "/api/v1/users" (d2f2de13)
+[Fri Aug 31 07:34:40 2018] [debug] Routing to a callback
+[Fri Aug 31 07:34:40 2018] [debug] Routing to a callback
+[Fri Aug 31 07:34:40 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Fri Aug 31 07:34:41 2018] [error] MongoDB::SelectionError: No readable server available for matching read preference primary. MongoDB server status:
+Topology type: Single; Member status:
+  localhost:27017 (type: Unknown, error: MongoDB::NetworkError: Could not connect to 'localhost:27017': Connection refused )
+
+[Fri Aug 31 07:34:41 2018] [debug] Template "exception.development.html.ep" not found
+[Fri Aug 31 07:34:41 2018] [debug] Template "exception.html.ep" not found
+[Fri Aug 31 07:34:41 2018] [debug] Rendering template "mojo/debug.html.ep"
+[Fri Aug 31 07:34:41 2018] [debug] Rendering template "mojo/menubar.html.ep"
+[Fri Aug 31 07:34:41 2018] [debug] Your secret passphrase needs to be changed
+[Fri Aug 31 07:34:41 2018] [debug] 500 Internal Server Error (0.567756s, 1.761/s)
+[Fri Aug 31 07:43:08 2018] [debug] GET "/api/v1/users" (139d32b0)
+[Fri Aug 31 07:43:08 2018] [debug] Routing to a callback
+[Fri Aug 31 07:43:08 2018] [debug] Routing to a callback
+[Fri Aug 31 07:43:08 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Fri Aug 31 07:43:08 2018] [debug] 200 OK (0.01699s, 58.858/s)
+[Fri Aug 31 07:44:23 2018] [debug] GET "/api/v1/users" (59bc905b)
+[Fri Aug 31 07:44:23 2018] [debug] Routing to a callback
+[Fri Aug 31 07:44:23 2018] [debug] Routing to a callback
+[Fri Aug 31 07:44:23 2018] [debug] Routing to controller "MicroMis::Controller::User" and action "index"
+[Fri Aug 31 07:44:24 2018] [debug] 200 OK (0.049535s, 20.188/s)
