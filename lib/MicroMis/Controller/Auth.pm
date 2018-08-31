@@ -29,10 +29,13 @@ sub login {
     );
   }
   
-  return $c->render(
-    json => { token => $c->jwt_encode({ api_key => $c->config('api_key') }) },
-    status => 200
-  );
+  my $payload = {
+    sub => $user->{name},
+    exp => time + int($c->config('jwt_ttl'))
+  };
+  my $token = $c->jwt_encode($payload);
+  
+  return $c->render(json => { token => $token }, status => 200);
 }
 
 # 退出接口

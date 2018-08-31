@@ -1,6 +1,6 @@
 package MicroMis::Plugin::AppHelpers;
 use Mojo::Base 'Mojolicious::Plugin';
-use Mojo::JWT;
+use Crypt::JWT qw(decode_jwt encode_jwt);
 use MongoDB;
 use MongoDB::OID;
 
@@ -20,28 +20,25 @@ sub register {
     return $db;
   });
   
-  # mongodb oid
+  # mongodb value to oid
   $app->helper('value2oid' => sub {
     my ($self, $value) = @_;
     MongoDB::OID->new($value);
   });
   
-  # jwt
   $app->helper('jwt_encode' => sub {
-    my $c       = shift;
-    my $payload = shift // { };
+    my ($c, $payload) = @_;
     
-    return Mojo::JWT->new({
-      claims => $payload,
-      secret => $app->config('jwt_secret')
-    })->encode;
+    return encode_jwt(
+      payload => $payload,
+      alg     => 'HS256',
+      key     => $app->config('jwt_secret')
+    );
   });
   
-  # jwt
   $app->helper('jwt_decode' => sub {
-    my ($c, $jwt) = @_;
-    
-    return Mojo::JWT->new($app->config('jwt_secret'))->decode($jwt);
+    my ($c, $token) = @_;
+    return decode_jwt(token => $token, key => $app->config('jwt_secret'));
   });
   
   # authenticated
