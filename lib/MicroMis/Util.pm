@@ -5,7 +5,6 @@ use Crypt::Eksblowfish::Bcrypt;
 sub encrypt_password {
   my $password = shift;
 
-  # Generate a salt if one is not passed
   my $salt = shift || salt(); 
 
   # Encrypt the password 
@@ -23,6 +22,7 @@ sub encrypt_password {
 sub check_password {
   my ($plain_password, $hashed_password) = @_;
   my ($salt) = split('-', $hashed_password, 2);
+  print $salt;
   return length $salt == 16 && encrypt_password($plain_password, $salt) eq $hashed_password;
 }
 
@@ -30,7 +30,7 @@ sub check_password {
 sub salt {
   my $itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   my $salt   = '';
-  $salt     .= substr($itoa64,int(rand(64)),1) while length($salt) < 16;
+  $salt     .= substr($itoa64, int(rand(64)), 1) while length($salt) < 16;
   
   return $salt;
 }

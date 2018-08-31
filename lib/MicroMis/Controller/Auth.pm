@@ -18,14 +18,12 @@ sub login {
     json => { error => 'user_doesnot_exists', message => '用户不存在' },
     status => 404
   ) if !$user;
-  
-  my $cypted_pass = MicroMis::Util::encrypt_password($pass);
 
-  unless(MicroMis::Util::check_password($user->{pass}, $cypted_pass)) {
+  unless(MicroMis::Util::check_password($pass, $user->{pass})) {
     return $c->render(
       json => {
         error   => 'invalid_email_or_password',
-        message => '用户名或密码错误' . '|' . $user->{pass} . '|' . $cypted_pass
+        message => '用户名或密码错误'
       },
       status => 400
     );
