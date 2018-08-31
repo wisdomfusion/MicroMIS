@@ -2,6 +2,7 @@ package MicroMis::Controller::Auth;
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Util 'secure_compare';
 
+# 登录接口
 sub login {
   my $c = shift;
   
@@ -22,6 +23,20 @@ sub login {
     json => { token => $c->jwt_encode({ api_key => $c->config('api_key') }) },
     status => 200
   );
+}
+
+# 退出接口
+sub logout {
+  my $c = shift;
+  
+  return undef;
+}
+
+# 更新 jwt 接口
+sub renew_token {
+  my $c = shift;
+  
+  return undef;
 }
 
 1;

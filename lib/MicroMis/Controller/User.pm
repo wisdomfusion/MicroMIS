@@ -8,9 +8,33 @@ sub index {
   my @all_users = $users->find({ });
   
   $c->render(
-    json   => \@all_users,
+    json   => { users => \@all_users },
     status => 200
   );
+}
+
+sub store {
+  my $c = shift;
+  
+  return undef;
+}
+
+sub show {
+  my $c = shift;
+  
+  return undef;
+}
+
+sub update {
+  my $c = shift;
+  
+  return undef;
+}
+
+sub destroy {
+  my $c = shift;
+  
+  return undef;
 }
 
 1;

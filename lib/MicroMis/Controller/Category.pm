@@ -7,4 +7,16 @@ sub index {
   return undef;
 }
 
+sub store {
+  my $self = shift;
+  
+  return undef;
+}
+
+sub destroy {
+  my $self = shift;
+  
+  return undef;
+}
+
 1;
