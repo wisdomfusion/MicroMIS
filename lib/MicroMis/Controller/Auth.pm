@@ -1,19 +1,31 @@
 package MicroMis::Controller::Auth;
 use Mojo::Base 'Mojolicious::Controller';
-use Mojo::Util 'secure_compare';
+use FindBin;
+use lib "$FindBin::Bin/../..";
+use MicroMis::Util;
 
 # 登录接口
 sub login {
   my $c = shift;
   
-  my $email = $c->param('email') // '';
-  my $pass  = $c->param('pass')  // '';
+  my $name = $c->param('name') // '';
+  my $pass = $c->param('pass') // '';
   
-  unless(lc($email) eq 'wisdomfusion@gmail.com' && $pass eq '123456') {
+  my $users = $c->db->get_collection('users');
+  my $user  = $users->find_one({ name => lc $name});
+  
+  return $c->render(
+    json => { error => 'user_doesnot_exists', message => '用户不存在' },
+    status => 404
+  ) if !$user;
+  
+  my $cypted_pass = MicroMis::Util::encrypt_password($pass);
+
+  unless(MicroMis::Util::check_password($user->{pass}, $cypted_pass)) {
     return $c->render(
       json => {
         error   => 'invalid_email_or_password',
-        message => '用户名或密码错误'
+        message => '用户名或密码错误' . '|' . $user->{pass} . '|' . $cypted_pass
       },
       status => 400
     );
