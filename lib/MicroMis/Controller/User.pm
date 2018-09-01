@@ -1,10 +1,13 @@
 package MicroMis::Controller::User;
 use Mojo::Base 'Mojolicious::Controller';
 
+# 用户列表
+# http://127.0.0.1:3000/api/v1/users
+# GET
 sub index {
   my $c = shift;
   
-  my $users  = $c->db->get_collection('users');
+  my $users  = $c->db->get_collection( 'users' );
   my @result = $users->find({ });
   
   $c->render(

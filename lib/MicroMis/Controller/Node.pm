@@ -1,10 +1,13 @@
 package MicroMis::Controller::Node;
 use Mojo::Base 'Mojolicious::Controller';
 
+# 信息列表
+# http://127.0.0.1:3000/api/v1/nodes
+# GET
 sub index {
   my $c = shift;
   
-  my $nodes  = $c->db->get_collection('nodes');
+  my $nodes  = $c->db->get_collection( 'nodes' );
   my @result = $nodes->find({ });
   
   $c->render(

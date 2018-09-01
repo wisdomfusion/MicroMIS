@@ -1,10 +1,13 @@
 package MicroMis::Controller::Project;
 use Mojo::Base 'Mojolicious::Controller';
 
+# project 列表
+# http://127.0.0.1:3000/api/v1/projects
+# GET
 sub index {
   my $c = shift;
   
-  my $projects = $c->db->get_collection('projects');
+  my $projects = $c->db->get_collection( 'projects' );
   my @result   = $projects->find({ });
   
   $c->render(
