@@ -2,19 +2,25 @@ package MicroMis::Controller::Category;
 use Mojo::Base 'Mojolicious::Controller';
 
 sub index {
-  my $self = shift;
+  my $c = shift;
   
-  return undef;
+  my $categories = $c->db->get_collection('categories');
+  my @result = $categories->find({ });
+  
+  $c->render(
+    json   => { categories => \@result },
+    status => 200
+  );
 }
 
 sub store {
-  my $self = shift;
+  my $c = shift;
   
   return undef;
 }
 
 sub destroy {
-  my $self = shift;
+  my $c = shift;
   
   return undef;
 }

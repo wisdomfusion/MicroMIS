@@ -4,11 +4,11 @@ use Mojo::Base 'Mojolicious::Controller';
 sub index {
   my $c = shift;
   
-  my $users = $c->db->get_collection('users');
-  my @all_users = $users->find({ });
+  my $users  = $c->db->get_collection('users');
+  my @result = $users->find({ });
   
   $c->render(
-    json   => { users => \@all_users },
+    json   => { users => \@result },
     status => 200
   );
 }

@@ -2,31 +2,37 @@ package MicroMis::Controller::Node;
 use Mojo::Base 'Mojolicious::Controller';
 
 sub index {
-  my $self = shift;
+  my $c = shift;
   
-  return undef;
+  my $nodes  = $c->db->get_collection('nodes');
+  my @result = $nodes->find({ });
+  
+  $c->render(
+    json   => { nodes => \@result },
+    status => 200
+  );
 }
 
 sub store {
-  my $self = shift;
+  my $c = shift;
   
   return undef;
 }
 
 sub show {
-  my $self = shift;
+  my $c = shift;
   
   return undef;
 }
 
 sub update {
-  my $self = shift;
+  my $c = shift;
   
   return undef;
 }
 
 sub destroy {
-  my $self = shift;
+  my $c = shift;
   
   return undef;
 }
