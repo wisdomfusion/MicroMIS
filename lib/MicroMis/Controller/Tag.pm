@@ -1,4 +1,8 @@
 package MicroMis::Controller::Tag;
+
+use strict;
+use warnings;
+
 use Mojo::Base 'Mojolicious::Controller';
 
 # 标签列表

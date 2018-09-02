@@ -1,4 +1,8 @@
 package MicroMis::Controller::Log;
+
+use strict;
+use warnings;
+
 use Mojo::Base 'Mojolicious::Controller';
 
 # 日志列表

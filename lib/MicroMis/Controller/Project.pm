@@ -1,4 +1,8 @@
 package MicroMis::Controller::Project;
+
+use strict;
+use warnings;
+
 use Mojo::Base 'Mojolicious::Controller';
 
 # project 列表

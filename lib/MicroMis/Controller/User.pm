@@ -1,5 +1,13 @@
 package MicroMis::Controller::User;
+
+use strict;
+use warnings;
+
 use Mojo::Base 'Mojolicious::Controller';
+
+use FindBin;
+use lib "$FindBin::Bin/../..";
+use MicroMis::Util;
 
 # 用户列表
 # http://127.0.0.1:3000/api/v1/users
@@ -25,10 +33,29 @@ sub index {
 sub store {
   my $c = shift;
   
-  my $params = $c->req->params->to_hash;
+  my $name = $c->param( 'name' );
+  my $pass = $c->param( 'pass' );
+  
+  my $v = $c->validation;
+  $v->required( 'name' );
+  $v->required( 'pass' );
+  
+  return $c->render(
+    json => { error => 'invalid_data_provided', message => '提供的数据非法' },
+    status => 422
+  ) if $v->has_error;
   
   my $coll = $c->db->get_collection( 'users' );
-  my $oid  = $coll->insert( $params );
+  
+  return $c->render(
+    json => { error => 'username_already_exists', message => '用户名已存在' },
+    status => 400
+  ) if $coll->find_one( { name => $name } );
+  
+  my $oid  = $coll->insert_one( {
+    name => $name,
+    pass => MicroMis::Util::encrypt_password( $pass )
+  } )->inserted_id;
   my $user = $coll->find_one( { _id => $oid } );
   
   $user->{ _id } = $user->{ _id }->value;

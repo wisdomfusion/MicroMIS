@@ -1,4 +1,8 @@
 package MicroMis::Controller::Category;
+
+use strict;
+use warnings;
+
 use Mojo::Base 'Mojolicious::Controller';
 
 # 分类列表

@@ -1,4 +1,8 @@
 package MicroMis::Controller::Auth;
+
+use strict;
+use warnings;
+
 use Mojo::Base 'Mojolicious::Controller';
 
 use FindBin;
@@ -61,6 +65,33 @@ sub renew_token {
   my $c = shift;
   
   return undef;
+}
+
+sub check {
+  my $c = shift;
+  
+  my $headers       = $c->req->headers;
+  my $authorization = $headers->authorization;
+  
+  if ( !$authorization || $authorization !~ /^Bearer/ ) {
+    return $c->render(
+      json => { error => 'unauthenticated', message => '未授权，未提供有效的令牌' },
+      status => 401
+    );
+  }
+  
+  my ( $_, $token ) = split( ' ', $authorization );
+  
+  if ($token) {
+    $token = $c->jwt_decode($token);
+    return 1 if $token->{ oid } && $token->{ name } && $token->{ exp } > time;
+  }
+  
+  # Not authenticated
+  return $c->render(
+    json => { error => 'unauthenticated', message => '未授权，请登录后重试' },
+    status => 401
+  );
 }
 
 1;
