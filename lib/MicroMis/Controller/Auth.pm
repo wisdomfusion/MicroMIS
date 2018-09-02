@@ -10,19 +10,22 @@ use MicroMis::Util;
 # POST
 sub login {
   my $c = shift;
+  my $params = $c->req->params->to_hash;
   
-  my $name = $c->param( 'name' ) // '';
-  my $pass = $c->param( 'pass' ) // '';
+  return $c->render(
+    json => { error => 'invalid_data_provided', message => '提供的数据非法' },
+    status => 422
+  ) unless ( $params->{ name } && $params->{ pass } );
   
-  my $users  = $c->db->get_collection( 'users' );
-  my $result = $users->find_one( { name => lc $name} );
-  
+  my $coll = $c->db->get_collection( 'users' );
+  my $user = $coll->find_one( { name => lc $params->{ name }} );
+
   return $c->render(
     json => { error => 'user_doesnot_exists', message => '用户不存在' },
     status => 404
-  ) if !$result;
+  ) if !$user;
 
-  unless ( MicroMis::Util::check_password( $pass, $result->{pass} ) ) {
+  unless ( MicroMis::Util::check_password( $params->{ pass }, $user->{pass} ) ) {
     return $c->render(
       json => {
         error   => 'invalid_email_or_password',
@@ -33,8 +36,9 @@ sub login {
   }
   
   my $payload = {
-    sub => $result->{ name },
-    exp => time + int( $c->config( 'jwt_ttl' ) )
+    oid  => $user->{ _id }->value,
+    name => $user->{ name },
+    exp  => time + int( $c->config( 'jwt_ttl' ) )
   };
   my $token = $c->jwt_encode( $payload );
   
