@@ -20,12 +20,14 @@ sub register {
     return $db;
   } );
   
-  # mongodb value to oid
+  # mongodb oid 的值转成 12 字节的 ObjectId
+  # https://docs.mongodb.com/manual/reference/method/ObjectId/
   $app->helper( 'value2oid' => sub {
     my ( $self, $value ) = @_;
     MongoDB::OID->new( $value );
   } );
   
+  # jwt 编码
   $app->helper( 'jwt_encode' => sub {
     my ( $c, $payload ) = @_;
     
@@ -36,21 +38,69 @@ sub register {
     );
   } );
   
+  # jwt 解码
   $app->helper( 'jwt_decode' => sub {
     my ( $c, $token ) = @_;
     return decode_jwt( token => $token, key => $app->config( 'jwt_secret' ) );
   } );
   
-  # authenticated
+  # 已授权？
   $app->helper( 'authed' => sub {
-    my $c   = shift;
-    my $jwt = $c->param( 'jwt' );
+    my $c = shift;
     
-    $jwt = $c->jwt_decode( $jwt );
+    my $headers       = $c->req->headers;
+    my $authorization = $headers->authorization;
     
-    return $jwt->{ api_key } eq $app->config( 'api_key' ) ? 1 : 0;
+    return 0 if ( !$authorization || $authorization !~ /^Bearer/ );
+    
+    my ( $_, $token ) = split( ' ', $authorization );
+    if ($token) {
+      $token = $c->jwt_decode($token);
+      return 1 if $token->{ oid } && $token->{ name } && $token->{ exp } > time;
+    }
+    
+    0;
+  } );
+  
+  # 请求成功的 response
+  # $c->success( data, message )
+  $app->helper( 'success' => sub {
+    my ( $c, $data, $message ) = @_;
+    
+    $data    = $data // { };
+    $message = $message // '';
+    
+    $c->render(
+      json   => { data => $data, message => $message },
+      status => 200
+    );
+  } );
+  
+  # 请求失败的 response
+  # $c->( status, message, data )
+  $app->helper( 'error' => sub {
+    my $c = shift;
+    
+    my $status  = shift // 400;
+    my $message = shift // '400 Bad Request';
+    my $data    = shift // { };
+    
+    my $res = { message => $message };
+    $res->{ data } = $data if $data;
+    
+    $c->render( json => $res, status => $status );
   } );
 
 }
 
 1;
+
+=head1 NAME
+
+MicroMis::Plugin::AppHelpers
+
+=head1 DESCRIPTION
+
+
+
+=cut

@@ -16,28 +16,16 @@ sub login {
   my $c = shift;
   my $params = $c->req->params->to_hash;
   
-  return $c->render(
-    json => { error => 'invalid_data_provided', message => '提供的数据非法' },
-    status => 422
-  ) unless ( $params->{ name } && $params->{ pass } );
+  return $c->error(422, '提供的数据非法')
+    unless ( $params->{ name } && $params->{ pass } );
   
   my $coll = $c->db->get_collection( 'users' );
   my $user = $coll->find_one( { name => lc $params->{ name }} );
 
-  return $c->render(
-    json => { error => 'user_doesnot_exists', message => '用户不存在' },
-    status => 404
-  ) if !$user;
+  return $c->reply->not_found if !$user;
 
-  unless ( MicroMis::Util::check_password( $params->{ pass }, $user->{pass} ) ) {
-    return $c->render(
-      json => {
-        error   => 'invalid_email_or_password',
-        message => '用户名或密码错误'
-      },
-      status => 400
-    );
-  }
+  return $c->error( 400, '用户名或密码错误' )
+    unless ( MicroMis::Util::check_password( $params->{ pass }, $user->{pass} ) );
   
   my $payload = {
     oid  => $user->{ _id }->value,
@@ -46,7 +34,7 @@ sub login {
   };
   my $token = $c->jwt_encode( $payload );
   
-  return $c->render( json => { token => $token }, status => 200 );
+  return $c->success( { token => $token } );
 }
 
 # 退出接口
@@ -67,18 +55,15 @@ sub renew_token {
   return undef;
 }
 
+# 令牌是否有效
 sub check {
   my $c = shift;
   
   my $headers       = $c->req->headers;
   my $authorization = $headers->authorization;
   
-  if ( !$authorization || $authorization !~ /^Bearer/ ) {
-    return $c->render(
-      json => { error => 'unauthenticated', message => '未授权，未提供有效的令牌' },
-      status => 401
-    );
-  }
+  return $c->error( 401, '未授权，未提供有效的令牌' )
+    unless ( $authorization && $authorization =~ /^Bearer/ );
   
   my ( $_, $token ) = split( ' ', $authorization );
   
@@ -87,11 +72,17 @@ sub check {
     return 1 if $token->{ oid } && $token->{ name } && $token->{ exp } > time;
   }
   
-  # Not authenticated
-  return $c->render(
-    json => { error => 'unauthenticated', message => '未授权，请登录后重试' },
-    status => 401
-  );
+  $c->error( 401,  '未授权，请登录后重试');
 }
 
 1;
+
+=head1 NAME
+
+MicroMis::Controller::Auth
+
+=DESCRIPTION
+
+
+
+=cut
