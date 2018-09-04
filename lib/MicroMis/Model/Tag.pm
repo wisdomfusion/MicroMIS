@@ -3,6 +3,10 @@ package MicroMis::Model::Tag;
 use strict;
 use warnings;
 
-sub new { bless { }, shift }
+use base qw( MicroMis::Model::Base );
+
+sub collection { 'tags' };
+
+sub hidden_fields { qw( ) }
 
 1;

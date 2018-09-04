@@ -5,10 +5,6 @@ use warnings;
 
 use Mojo::Base -base;
 
-has 'db';
-
-sub new { bless { }, shift };
-
 # $res = $coll->insert_one( $document );
 # $res = $coll->insert_one( $document, $options );
 # $id  = $res->inserted_id;

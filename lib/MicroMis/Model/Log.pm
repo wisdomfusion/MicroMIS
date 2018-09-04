@@ -3,6 +3,10 @@ package MicroMis::Model::Log;
 use strict;
 use warnings;
 
-sub new { bless { }, shift }
+use base qw( MicroMis::Model::Base );
+
+sub collection { 'logs' };
+
+sub hidden_fields { qw( ) }
 
 1;
