@@ -11,13 +11,10 @@ use Mojo::Base 'Mojolicious::Controller';
 sub index {
   my $c = shift;
   
-  my $categories = $c->db->get_collection( 'categories' );
-  my @result = $categories->find({ });
+  my $coll = $c->db->get_collection( 'categories' );
+  my @result = $coll->find->all;
   
-  $c->render(
-    json   => { categories => \@result },
-    status => 200
-  );
+  $c->success( { categories => \@result } );
 }
 
 sub store {

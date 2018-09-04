@@ -3,6 +3,12 @@ package MicroMis::Model::User;
 use strict;
 use warnings;
 
-sub new { bless {}, shift }
+use base qw( MicroMis::Model::Base );
+
+sub new { bless { }, shift }
+
+sub collection { 'users' };
+
+sub hidden_fields { qw( pass ) }
 
 1;

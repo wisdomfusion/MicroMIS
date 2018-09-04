@@ -1,8 +1,9 @@
 package MicroMis::Plugin::AppHelpers;
+
 use Mojo::Base 'Mojolicious::Plugin';
 use Crypt::JWT qw(decode_jwt encode_jwt);
 use MongoDB;
-use MongoDB::OID;
+use BSON::Types qw( bson_oid );
 
 sub register {
   my ( $self, $app, $opts ) = @_;
@@ -15,16 +16,16 @@ sub register {
     my $client = MongoDB::MongoClient->new(
       host => "mongodb://$mongodb_conf->{host}:$mongodb_conf->{port}",
     );
-    my $db = $client->get_database( $mongodb_conf->{ db } );
+    state $db = $client->get_database( $mongodb_conf->{ db } );
     
     return $db;
   } );
   
   # mongodb oid 的值转成 12 字节的 ObjectId
   # https://docs.mongodb.com/manual/reference/method/ObjectId/
-  $app->helper( 'value2oid' => sub {
-    my ( $self, $value ) = @_;
-    MongoDB::OID->new( $value );
+  $app->helper( 'oid' => sub {
+    my ( $self, $oid_string ) = @_;
+    bson_oid( $oid_string );
   } );
   
   # jwt 编码
@@ -67,8 +68,8 @@ sub register {
   $app->helper( 'success' => sub {
     my ( $c, $data, $message ) = @_;
     
-    $data    = $data // { };
-    $message = $message // '';
+    $data    = $data    || { };
+    $message = $message || '';
     
     $c->render(
       json   => { data => $data, message => $message },
@@ -81,9 +82,9 @@ sub register {
   $app->helper( 'error' => sub {
     my $c = shift;
     
-    my $status  = shift // 400;
-    my $message = shift // '400 Bad Request';
-    my $data    = shift // { };
+    my $status  = shift || 400;
+    my $message = shift || '400 Bad Request';
+    my $data    = shift || { };
     
     my $res = { message => $message };
     $res->{ data } = $data if $data;
@@ -94,13 +95,3 @@ sub register {
 }
 
 1;
-
-=head1 NAME
-
-MicroMis::Plugin::AppHelpers
-
-=head1 DESCRIPTION
-
-
-
-=cut

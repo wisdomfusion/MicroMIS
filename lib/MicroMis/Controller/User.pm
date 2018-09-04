@@ -4,24 +4,21 @@ use strict;
 use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
-
+use Carp qw( croak );
 use FindBin;
+
 use lib "$FindBin::Bin/../..";
-use MicroMis::Util;
+use MicroMis::Util qw( encrypt_password );
+
+my $user_model = MicroMis::Model::User->new;
 
 # 用户列表
 # http://127.0.0.1:3000/api/v1/users
 # GET
 sub index {
   my $c = shift;
-  
-  my $headers = $c->req->headers;
-  my $auth    = $headers->authorization;
-  
-  my $coll   = $c->db->get_collection( 'users' );
-  my @result = $coll->find->all;
-  
-  $c->success( { users => \@result, token => $auth } );
+  my @result = $user_model->all;
+  $c->success( { users => \@result } );
 }
 
 # 添加用户
@@ -36,28 +33,32 @@ sub store {
   my $v = $c->validation;
   $v->required( 'name' );
   $v->required( 'pass' );
-  return $c->error( 422, '提供的数据非法' ) if $v->has_error;
   
-  my $coll = $c->db->get_collection( 'users' );
+  return $c->error( 422, '提供的数据非法' )
+    if $v->has_error;
   
   return $c->error( 400, '用户名已存在！' )
-    if $coll->find_one( { name => $name } );
+    if $user_model->find_one( { name => $name } );
   
-  my $result = $coll->insert_one( {
-    name => $name,
-    pass => MicroMis::Util::encrypt_password( $pass )
-  } );
+  my $now = time;
+  my $document = {
+    name       => $name,
+    pass       => encrypt_password( $pass ),
+    created_at => $now,
+    updated_at => $now,
+    deleted_at => undef
+  };
+  
+  my $res = $user_model->add( $document );
   
   return $c->error( 400, '添加用户失败！' )
-    unless $result->inserted_id;
+    unless $res->inserted_id;
     
-  my $oid  = $result->inserted_id;
-  my $user = $coll->find_one( { _id => $oid }, { pass => 0 } );
+  my $oid  = $res->inserted_id;
+  my $user = $user_model->find_one( { _id => $oid }, { pass => 0 } );
   $user->{ _id } = $user->{ _id }->value;
-  
-  my $res = { user => $user };
-  
-  $c->success( $res, '成功添加用户！' );
+
+  $c->success( { user => $user }, '成功添加用户！' );
 }
 
 # 用户详情
@@ -66,14 +67,15 @@ sub store {
 sub show {
   my $c = shift;
   
-  my $oid  = $c->value2oid( $c->param( 'id' ) );
-  my $coll = $c->db->get_collection( 'users' );
-  my $user = $coll->find_id( $oid, { pass => 0 } );
-  $user->{ _id } = $user->{ _id }->value;
+  my $oid = $c->oid( $c->param( 'id' ) );
+  my $user = $user_model->find_id( $oid );
   
-  my $res = { user => $user };
+  if ( $user ) {
+    $user->{ _id } = $user->{ _id }->value;
+    return $c->success( { user => $user } );
+  }
   
-  $c->success( $res );
+  undef;
 }
 
 # 编辑用户
@@ -82,26 +84,23 @@ sub show {
 sub update {
   my $c = shift;
   
-  my $oid    = $c->value2oid( $c->param( 'id' ) );
+  my $oid    = $c->oid( $c->param( 'id' ) );
   my $params = $c->req->params->to_hash;
   
   delete $params->{ name }
     if ( exists $params->{ name } );
     
-  $params->{ pass } = MicroMis::Util::encrypt_password( $params->{ pass } )
+  $params->{ pass } = encrypt_password( $params->{ pass } )
     if ( exists $params->{ pass } );
     
   $params->{ updated_at } = time;
   
-  my $coll = $c->db->get_collection( 'users' );
-  $coll->update_one( { _id => $oid }, { '$set' => $params } );
+  $user_model->update( { _id => $oid }, { '$set' => $params } );
   
-  my $user = $coll->find_id( $oid, { pass => 0 } );
+  my $user = $user_model->find_id( $oid );
   $user->{ _id } = $user->{ _id }->value;
-  
-  my $res = { user => $user };
-  
-  $c->success( $res, '成功编辑用户！' );
+
+  $c->success( { user => $user }, '成功编辑用户！' );
 }
 
 # 删除用户
@@ -110,17 +109,16 @@ sub update {
 sub destroy {
   my $c = shift;
   
-  my $oid  = $c->value2oid( $c->param( 'id' ) );
+  my $oid  = $c->oid( $c->param( 'id' ) );
   
-  my $coll = $c->db->get_collection( 'users' );
-  my $user = $coll->find_id( $oid );
+  my $user = $user_model->find_id( $oid );
   
   return $c->error(403, '禁止删除根用户')
     if $user->{ name } eq 'admin';
   
   # TODO: 用户存在 project 或 node 时禁止删除
   
-  $coll->delete_one( { _id => $oid } );
+  $user_model->delete_one( { _id => $oid } );
   
   $c->success( { }, '成功删除用户！' );
 }

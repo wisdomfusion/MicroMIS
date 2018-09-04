@@ -1,5 +1,12 @@
 package MicroMis::Util;
-use Crypt::Eksblowfish::Bcrypt;
+
+use strict;
+use warnings;
+
+use Crypt::Eksblowfish::Bcrypt qw(bcrypt_hash en_base64);
+
+use Exporter 'import';
+our @EXPORT_OK = qw(encrypt_password check_password);
 
 # Encrypt a password 
 sub encrypt_password {
@@ -8,14 +15,14 @@ sub encrypt_password {
   my $salt = shift || salt(); 
 
   # Encrypt the password 
-  my $hash = Crypt::Eksblowfish::Bcrypt::bcrypt_hash( {
+  my $hash = bcrypt_hash( {
     key_nul => 1,
     cost    => 8,
     salt    => $salt,
   }, $password );
 
   # Return the salt and the encrypted password
-  return join( '-', $salt, Crypt::Eksblowfish::Bcrypt::en_base64( $hash ) );
+  return join( '-', $salt, en_base64( $hash ) );
 }
 
 # Check if the passwords match

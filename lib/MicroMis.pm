@@ -6,7 +6,9 @@ use warnings;
 our $VERSION = '0.0.1';
 
 use Mojo::Base 'Mojolicious';
+
 use MicroMis::Plugin::AppHelpers;
+use MicroMis::Model;
 
 sub startup {
   my $self = shift;
@@ -73,6 +75,13 @@ sub startup {
   
   # 系统日志
   $authed->get( '/logs' )->to( 'log#index' );
+  
+  # Init Model
+  MicroMis::Model->init( $self->config( 'mongodb' ) || {
+    host => 'localhost',
+    port => 27017,
+    db   => 'micromisdb'
+  });
 }
 
 1;

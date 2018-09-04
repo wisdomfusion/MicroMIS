@@ -1,4 +1,4 @@
-package MicroMis::Model::Log;
+package MicroMis::Model::Category;
 
 use strict;
 use warnings;

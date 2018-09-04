@@ -4,10 +4,11 @@ use strict;
 use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
-
 use FindBin;
+
 use lib "$FindBin::Bin/../..";
-use MicroMis::Util;
+
+use MicroMis::Util qw( check_password );
 
 # 登录接口
 # http://127.0.0.1:3000/api/v1/login
@@ -25,7 +26,7 @@ sub login {
   return $c->reply->not_found if !$user;
 
   return $c->error( 400, '用户名或密码错误' )
-    unless ( MicroMis::Util::check_password( $params->{ pass }, $user->{pass} ) );
+    unless ( check_password( $params->{ pass }, $user->{pass} ) );
   
   my $payload = {
     oid  => $user->{ _id }->value,
@@ -76,13 +77,3 @@ sub check {
 }
 
 1;
-
-=head1 NAME
-
-MicroMis::Controller::Auth
-
-=DESCRIPTION
-
-
-
-=cut
