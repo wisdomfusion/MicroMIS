@@ -13,7 +13,11 @@ use MicroMis::Model::Tag;
 use MicroMis::Model::Node;
 use MicroMis::Model::Log;
 
+# db connection
 my $DB;
+
+# page size of pagination
+my $PER_PAGE = 20;
 
 sub init {
   my ( $class, $config ) = @_;
@@ -34,6 +38,10 @@ sub init {
 sub db {
   return $DB if $DB;
   croak 'Init model first!';
+}
+
+sub per_page {
+  $PER_PAGE || 20;
 }
 
 1;

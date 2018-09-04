@@ -4,12 +4,10 @@ use strict;
 use warnings;
 
 use Mojo::Base -base;
+use Storable qw( dclone );
 
-# MongoDB:
-#   $cursor = $coll->find( $filter );
-#   $cursor = $coll->find( $filter, $options );
-#   $cursor = $coll->find({ i => { '$gt' => 42 } }, {limit => 20});
-sub all {
+# find documents
+sub find {
   my $class   = shift;
   my $filter  = shift || { };
   my $options = shift || { };
@@ -21,12 +19,10 @@ sub all {
     $hidden_fields = { map { $_ => 0 } $class->hidden_fields };
   }
   
-  $coll->find( $filter, $options )->fields( $hidden_fields )->all;
+  $coll->find( $filter, $options )->fields( $hidden_fields );
 }
 
-# MongoDB:
-#   $doc = $collection->find_one( $filter, $projection );
-#   $doc = $collection->find_one( $filter, $projection, $options );
+# find a document
 sub find_one {
   my $class  = shift;
   my $filter = shift || { };
@@ -41,10 +37,7 @@ sub find_one {
   $coll->find_one( $filter, $hidden_fields );
 }
 
-# MongoDB:
-#   $doc = $collection->find_id( $id );
-#   $doc = $collection->find_id( $id, $projection );
-#   $doc = $collection->find_id( $id, $projection, $options );
+# find a document by oid
 sub find_id {
   my ( $class, $oid ) = @_;
   return undef unless $oid;
@@ -59,20 +52,14 @@ sub find_id {
   $coll->find_id( $oid, $hidden_fields );
 }
 
-# MongoDB:
-#   $res = $coll->insert_one( $document );
-#   $res = $coll->insert_one( $document, $options );
-#   $id  = $res->inserted_id;
+# add a new document
 sub add {
   my ( $class, $document ) = @_;
   my $coll = MicroMis::Model->db->get_collection( $class->collection );
   $coll->insert_one( $document );
 }
 
-# MongoDB:
-#   $res = $coll->delete_many( $filter );
-#   $res = $coll->delete_many( { name => "Larry" } );
-#   $res = $coll->delete_many( $filter, { collation => { locale => "en_US" } } );
+# delete documents
 sub delete_many {
   my ( $class, $filter ) = @_;
   return undef unless $filter;
@@ -81,10 +68,7 @@ sub delete_many {
   $coll->delete_many( $filter );
 }
 
-# MongoDB:
-#   $res = $coll->delete_one( $filter );
-#   $res = $coll->delete_one( { _id => $id } );
-#   $res = $coll->delete_one( $filter, { collation => { locale => "en_US" } } );
+# delete a document
 sub delete_one {
   my ( $class, $filter ) = @_;
   return undef unless $filter;
@@ -93,28 +77,45 @@ sub delete_one {
   $coll->delete_one( $filter );
 }
 
-# MongoDB:
-#   $res = $coll->update_one( $filter, $update );
-#   $res = $coll->update_one( $filter, $update, { upsert => 1 } );
+# update a document
 sub update {
   my ( $class, $filter, $update ) = @_;
   my $coll = MicroMis::Model->db->get_collection( $class->collection );
   $coll->update_one( $filter, $update );
 }
 
-# MongoDB:
-#   $count = $coll->count_documents( $filter );
-#   $count = $coll->count_documents( $filter, $options );
+# count documents
 sub count {
-  my ( $class, $criteria ) = @_;
+  my ( $class, $filter ) = @_;
   my $coll = MicroMis::Model->db->get_collection( $class->collection );
-  $coll->count_documents( $criteria );
+  $coll->count_documents( $filter );
 }
 
-# get a collection
-sub coll {
+# get a lazy cursor of a collection
+sub cursor {
   my $class = shift;
   MicroMis::Model->db->get_collection( $class->collection );
+}
+
+# data pagination
+sub paginate {
+  my $class  = shift;
+  my $cursor = shift;        # mongo lazy cursor
+  my $total  = shift;
+  my $params = shift || { }; # params includes 'page' or 'per_page'
+  
+  my $per_page = $params->{ per_page } || MicroMis::Model->per_page;
+  my $page     = $params->{ page }     || 1;
+
+  my $skip_num = $page > 1 ? 1 * ( $page - 1 ) * $per_page : 0;
+  my @data     = $cursor->limit( $per_page )->skip( $skip_num )->all;
+  
+  +{
+    data     => \@data,
+    total    => $total,
+    per_page => $per_page,
+    page     => $page
+  };
 }
 
 1;
