@@ -2,8 +2,9 @@
   jwt_secret => 'ef8c05e90e9bfa5fca313c0d999241d70f8cf8a8',
   jwt_ttl    => 86400,
   mongodb    => {
-    host => 'localhost',
-    port => 27017,
-    db   => 'micromisdb'
+    host     => 'localhost',
+    port     => 27017,
+    db       => 'micromisdb',
+    per_page => 20
   }
 }

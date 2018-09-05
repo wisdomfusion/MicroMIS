@@ -17,8 +17,9 @@ use MicroMis::Model::Log;
 my $DB;
 
 # page size of pagination
-my $PER_PAGE = 20;
+my $PER_PAGE;
 
+# 初始化数据库连接，分页大小
 sub init {
   my ( $class, $config ) = @_;
   
@@ -32,16 +33,18 @@ sub init {
     $DB = $client->get_database( $config->{ db } );
   }
   
-  $DB;
+  $PER_PAGE = $config->{ per_page } || 20;
 }
 
+# 数据库连接
 sub db {
   return $DB if $DB;
-  croak 'Init model first!';
+  croak 'Init Models First!';
 }
 
+# 数据分页大小
 sub per_page {
-  $PER_PAGE || 20;
+  $PER_PAGE;
 }
 
 1;

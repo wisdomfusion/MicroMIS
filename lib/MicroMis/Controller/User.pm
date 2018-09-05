@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
+use Data::Dumper qw( Dumper );
 use Carp qw( croak );
 use FindBin;
 
@@ -21,8 +22,15 @@ sub index {
   
   my $filter = { };
   
+  unless ( exists $params->{ with_del } ) {
+    $filter->{ '$or' } = [
+      { deleted_at => { '$exists' => 0 } },
+      { deleted_at => 'null' }
+    ];
+  }
+  
   my $cursor = $m->find( $filter );
-  my $total  = scalar $m->find( $filter )->all;
+  my $total  = $m->count( $filter );
   my $res    = $m->paginate( $cursor, $total, $params );
   
   $c->success( $res );
