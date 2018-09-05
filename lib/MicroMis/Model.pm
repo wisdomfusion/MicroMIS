@@ -5,6 +5,9 @@ use warnings;
 
 use MongoDB;
 use Carp qw( croak );
+use FindBin;
+
+use lib "$FindBin::Bin/../";
 
 use MicroMis::Model::User;
 use MicroMis::Model::Project;

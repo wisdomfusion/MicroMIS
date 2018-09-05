@@ -11,7 +11,7 @@ use FindBin;
 use lib "$FindBin::Bin/../..";
 use MicroMis::Util qw( encrypt_password );
 
-my $m = MicroMis::Model::User->new;
+my $user_model = MicroMis::Model::User->new;
 
 # 用户列表
 # http://127.0.0.1:3000/api/v1/users
@@ -29,9 +29,9 @@ sub index {
     ];
   }
   
-  my $cursor = $m->find( $filter );
-  my $total  = $m->count( $filter );
-  my $res    = $m->paginate( $cursor, $total, $params );
+  my $cursor = $user_model->find( $filter );
+  my $total  = $user_model->count( $filter );
+  my $res    = $user_model->paginate( $cursor, $total, $params );
   
   $c->success( $res );
 }
@@ -49,11 +49,11 @@ sub store {
   $v->required( 'name' );
   $v->required( 'pass' );
   
-  return $c->error( 422, '提供的数据非法' )
+  return $c->error( 422, '提供的数据不合法' )
     if $v->has_error;
   
   return $c->error( 400, '用户名已存在！' )
-    if $m->find_one( { name => $name } );
+    if $user_model->find_one( { name => $name } );
   
   my $now = time;
   my $document = {
@@ -64,13 +64,13 @@ sub store {
     deleted_at => undef
   };
   
-  my $res = $m->add( $document );
+  my $res = $user_model->add( $document );
   
   return $c->error( 400, '添加用户失败！' )
     unless $res->inserted_id;
     
   my $oid  = $res->inserted_id;
-  my $user = $m->find_one( { _id => $oid }, { pass => 0 } );
+  my $user = $user_model->find_id( $oid );
   $user->{ _id } = $user->{ _id }->value;
 
   $c->success( { user => $user }, '成功添加用户！' );
@@ -83,7 +83,7 @@ sub show {
   my $c = shift;
   
   my $oid  = $c->oid( $c->param( 'id' ) );
-  my $user = $m->find_id( $oid );
+  my $user = $user_model->find_id( $oid );
   
   if ( $user ) {
     $user->{ _id } = $user->{ _id }->value;
@@ -110,9 +110,9 @@ sub update {
     
   $params->{ updated_at } = time;
   
-  $m->update( { _id => $oid }, { '$set' => $params } );
+  $user_model->update( { _id => $oid }, { '$set' => $params } );
   
-  my $user = $m->find_id( $oid );
+  my $user = $user_model->find_id( $oid );
   $user->{ _id } = $user->{ _id }->value;
 
   $c->success( { user => $user }, '成功编辑用户！' );
@@ -125,15 +125,14 @@ sub destroy {
   my $c = shift;
   
   my $oid  = $c->oid( $c->param( 'id' ) );
-  
-  my $user = $m->find_id( $oid );
+  my $user = $user_model->find_id( $oid );
   
   return $c->error(403, '禁止删除根用户')
     if $user->{ name } eq 'admin';
   
   # TODO: 用户存在 project 或 node 时禁止删除
   
-  $m->delete_one( { _id => $oid } );
+  $user_model->delete_one( { _id => $oid } );
   
   $c->success( { }, '成功删除用户！' );
 }
