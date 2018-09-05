@@ -58,6 +58,7 @@ sub startup {
   $authed->route( '/project/:id'  )->via( 'PUT'    )->to( 'project#update' );
   $authed->route( '/project/:id'  )->via( 'DELETE' )->to( 'project#destroy' );
   $authed->route( '/project/list' )->via( 'GET'    )->to( 'project#list' );
+  $authed->route( '/project/tpl'  )->via( 'GET'    )->to( 'project#template' );
   
   # 标签
   $authed->route( '/tags' )->via( 'GET' )->to( 'tag#index' );

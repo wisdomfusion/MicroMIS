@@ -68,4 +68,13 @@ sub list {
   undef;
 }
 
+# project 信息模板
+# http://127.0.0.1:3000/api/v1/project/tpl
+# GET
+sub template {
+  my $c = shift;
+  
+  undef;
+}
+
 1;
