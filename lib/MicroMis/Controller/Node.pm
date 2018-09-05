@@ -23,6 +23,15 @@ sub index {
   $c->success( $res );
 }
 
+# 导入信息节点
+# http://127.0.0.1:3000/api/v1/nodes
+# POST
+sub import {
+  my $c = shift;
+  
+  undef;
+}
+
 # 添加信息节点
 # http://127.0.0.1:3000/api/v1/node
 # POST

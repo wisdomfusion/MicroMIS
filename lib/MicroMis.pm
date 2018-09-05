@@ -34,9 +34,10 @@ sub startup {
   # API 路由：
   #
   my $api = $r->under( '/api/v1' );
-  $api->post( '/login' )->to( 'auth#login' );             # 登录
-  $api->post( '/logout' )->to( 'auth#logout' );           # 退出
-  $api->post( '/token/renew' )->to( 'auth#renew_token' ); # 更新令牌
+  
+  $api->route( '/login'       )->via( 'POST' )->to( 'auth#login' );       # 登录
+  $api->route( '/logout'      )->via( 'POST' )->to( 'auth#logout' );      # 退出
+  $api->route( '/token/renew' )->via( 'POST' )->to( 'auth#renew_token' ); # 更新令牌
   
   #
   # 登录验证后：
@@ -44,37 +45,38 @@ sub startup {
   my $authed = $api->under( '/' )->to( 'auth#check' );
 
   # 用户
-  $authed->get( '/users' )->to( 'user#index' );
-  $authed->post( '/user' )->to( 'user#store' );
-  $authed->get( '/user/:id' )->to( 'user#show' );
-  $authed->put( '/user/:id' )->to( 'user#update' );
-  $authed->delete( '/user/:id' )->to( 'user#destroy' );
+  $authed->route( '/users'    )->via( 'GET'    )->to( 'user#index' );
+  $authed->route( '/user'     )->via( 'POST'   )->to( 'user#store' );
+  $authed->route( '/user/:id' )->via( 'GET'    )->to( 'user#show' );
+  $authed->route( '/user/:id' )->via( 'PUT'    )->to( 'user#update' );
+  $authed->route( '/user/:id' )->via( 'DELETE' )->to( 'user#destroy' );
   
   # 项目
-  $authed->get( '/projects' )->to( 'project#index' );
-  $authed->post( '/project' )->to( 'project#store' );
-  $authed->get( '/project/:id' )->to( 'project#show' );
-  $authed->put( '/project/:id' )->to( 'project#update' );
-  $authed->delete( '/project/:id' )->to( 'project#destroy' );
-  $authed->get( '/project/list' )->to( 'project#list' );
+  $authed->route( '/projects'     )->via( 'GET'    )->to( 'project#index' );
+  $authed->route( '/project'      )->via( 'POST'   )->to( 'project#store' );
+  $authed->route( '/project/:id'  )->via( 'GET'    )->to( 'project#show' );
+  $authed->route( '/project/:id'  )->via( 'PUT'    )->to( 'project#update' );
+  $authed->route( '/project/:id'  )->via( 'DELETE' )->to( 'project#destroy' );
+  $authed->route( '/project/list' )->via( 'GET'    )->to( 'project#list' );
   
   # 标签
-  $authed->get( '/tags' )->to( 'tag#index' );
+  $authed->route( '/tags' )->via( 'GET' )->to( 'tag#index' );
   
   # 分类（行业）
-  $authed->get( '/cates' )->to( 'category#index' );
-  $authed->post( '/cate' )->to( 'category#store' );
-  $authed->delete( '/cate/:id' )->to( 'category#destroy' );
+  $authed->route( '/cates'    )->via( 'GET'    )->to( 'category#index' );
+  $authed->route( '/cate'     )->via( 'POST'   )->to( 'category#store' );
+  $authed->route( '/cate/:id' )->via( 'DELETE' )->to( 'category#destroy' );
   
   # 信息节点
-  $authed->get( '/nodes' )->to( 'node#index' );
-  $authed->post( '/node' )->to( 'node#store' );
-  $authed->get( '/node/:id' )->to( 'node#show' );
-  $authed->put( '/node/:id' )->to( 'node#update' );
-  $authed->delete( '/node/:id' )->to( 'node#destroy' );
+  $authed->route( '/nodes'    )->via( 'GET'    )->to( 'node#index' );
+  $authed->route( '/nodes'    )->via( 'POST'   )->to( 'node#import' );
+  $authed->route( '/node'     )->via( 'POST'   )->to( 'node#store' );
+  $authed->route( '/node/:id' )->via( 'GET'    )->to( 'node#show' );
+  $authed->route( '/node/:id' )->via( 'PUT'    )->to( 'node#update' );
+  $authed->route( '/node/:id' )->via( 'DELETE' )->to( 'node#destroy' );
   
   # 系统日志
-  $authed->get( '/logs' )->to( 'log#index' );
+  $authed->route( '/logs' )->via( 'GET' )->to( 'log#index' );
   
   # Init Model
   MicroMis::Model->init( $self->config( 'mongodb' ) || {
