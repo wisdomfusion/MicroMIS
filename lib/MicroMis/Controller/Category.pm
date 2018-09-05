@@ -14,7 +14,6 @@ sub index {
   my $c = shift;
   
   my @result = $cate_model->find->all;
-  
   $c->success( { categories => \@result } );
 }
 

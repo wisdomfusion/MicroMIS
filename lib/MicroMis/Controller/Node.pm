@@ -5,43 +5,58 @@ use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
 
+my $node_model = MicroMis::Model::Node->new;
+
 # 信息列表
 # http://127.0.0.1:3000/api/v1/nodes
 # GET
 sub index {
   my $c = shift;
+  my $params = $c->req->params->to_hash;
   
-  my $nodes  = $c->db->get_collection( 'nodes' );
-  my @result = $nodes->find({ });
+  my $filter = { };
   
-  $c->render(
-    json   => { nodes => \@result },
-    status => 200
-  );
+  my $cursor = $node_model->find( $filter );
+  my $total  = $node_model->count( $filter );
+  my $res    = $node_model->paginate( $cursor, $total, $params );
+  
+  $c->success( $res );
 }
 
+# 添加信息节点
+# http://127.0.0.1:3000/api/v1/node
+# POST
 sub store {
   my $c = shift;
   
-  return undef;
+  undef;
 }
 
+# 信息节点详情
+# http://127.0.0.1:3000/api/v1/node/:id
+# GET
 sub show {
   my $c = shift;
   
-  return undef;
+  undef;
 }
 
+# 编辑信息节点
+# http://127.0.0.1:3000/api/v1/node/:id
+# PUT
 sub update {
   my $c = shift;
   
-  return undef;
+  undef;
 }
 
+# 删除信息节点
+# http://127.0.0.1:3000/api/v1/node/:id
+# DELETE
 sub destroy {
   my $c = shift;
   
-  return undef;
+  undef;
 }
 
 1;

@@ -49,7 +49,7 @@ sub store {
   $v->required( 'name' );
   $v->required( 'pass' );
   
-  return $c->error( 422, '提供的数据不合法' )
+  return $c->error( 422, '提供的数据不合法！' )
     if $v->has_error;
   
   return $c->error( 400, '用户名已存在！' )

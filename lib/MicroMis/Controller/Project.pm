@@ -5,43 +5,67 @@ use warnings;
 
 use Mojo::Base 'Mojolicious::Controller';
 
+my $project_model = MicroMis::Model::Project->new;
+
 # project 列表
 # http://127.0.0.1:3000/api/v1/projects
 # GET
 sub index {
   my $c = shift;
+  my $params = $c->req->params->to_hash;
   
-  my $projects = $c->db->get_collection( 'projects' );
-  my @result   = $projects->find({ });
+  my $filter = { };
   
-  $c->render(
-    json   => { nodes => \@result },
-    status => 200
-  );
+  my $cursor = $project_model->find( $filter );
+  my $total  = $project_model->count( $filter );
+  my $res    = $project_model->paginate( $cursor, $total, $params );
+  
+  $c->success( $res );
 }
 
+# 添加 project
+# http://127.0.0.1:3000/api/v1/project
+# POST
 sub store {
   my $c = shift;
   
-  return undef;
+  undef;
 }
 
+# project 详情
+# http://127.0.0.1:3000/api/v1/project/:id
+# GET
 sub show {
   my $c = shift;
   
-  return undef;
+  undef;
 }
 
+# 编辑 project
+# http://127.0.0.1:3000/api/v1/project/:id
+# PUT
 sub update {
   my $c = shift;
   
-  return undef;
+  undef;
 }
 
+# 删除 project
+# http://127.0.0.1:3000/api/v1/project/:id
+# DELETE
 sub destroy {
   my $c = shift;
   
-  return undef;
+  undef;
+}
+
+# project 基本信息列表
+# http://127.0.0.1:3000/api/v1/project/list
+# GET
+sub list {
+  my $c = shift;
+  
+  undef;
 }
 
 1;
