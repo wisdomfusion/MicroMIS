@@ -24,8 +24,8 @@ sub index {
 sub store {
   my $c = shift;
   
-  my $title      = $c->param( 'title' );
-  my $parent_oid = $c->param( 'parent_oid ') || undef;
+  my $title = $c->param( 'title' );
+  my $pid   = $c->param( 'pid' ) || undef;
   
   my $v = $c->validation;
   $v->required( 'title' );
@@ -34,46 +34,24 @@ sub store {
     if $v->has_error;
   
   return $c->error( 400, '主分类名称已存在！' )
-    if !$parent_oid && $cate_model->find_one( { title => $title } );
+    if ( !$pid && $cate_model->count( { title => $title } ) );
   
-  my $flag = 0; # 添加成功与否
+  return $c->error( 400, '同一主分类下子分类名称不能相同！' )
+    if ( $pid && $cate_model->count( { pid => $pid, title => $title } ) );
   
-  my $q;
-  if ( $parent_oid ) {
-    # 添加子分类
-    $q = $cate_model->find_id( $c->oid( $parent_oid ) );
-    
-    if ( length $q->{ children } ) {
-      my %children = map { $_ => 1 } $q->{ children };
-      
-      return $c->error( 400, '同一主分类下子分类名称不能相同！' )
-        if ( exists $children{ $title } );
-    }
-    
-    my $filter = { _id => $c->oid( $parent_oid ) };
-    my $update = { '$push' => { children => $title } };
-      
-    $flag = 1 if ( $cate_model->update( $filter, $update )->acknowledged );
-  }
-  else {
-    # 添加主分类
-    my $document = {
-      title      => $title,
-      children   => [ ],
-      order      => 0,
-    };
-    
-    $q = $cate_model->add( $document );
-    
-    $flag = 1 if ( $q->inserted_id );
-  }
+  my $document = {
+    title => $title,
+    pid   => $pid,
+    order => 0,
+  };
   
-  if ( $flag ) {
-    my @categories = $cate_model->find( { }, { sort => { order => 1 } } )->all;
-    return $c->success( { categories => \@categories }, '成功添加分类！' );
-  }
+  my $res = $cate_model->add( $document );
   
-  $c->error( 400, '添加分类失败！' );
+  return $c->error( 400, '添加分类失败！' )
+    unless $res->inserted_id;
+  
+  my @categories = $cate_model->find( { }, { sort => { order => 1 } } )->all;
+  $c->success( { categories => \@categories }, '成功添加分类！' );
 }
 
 # 删除分类
