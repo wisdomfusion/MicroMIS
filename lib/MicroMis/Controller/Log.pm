@@ -1,11 +1,8 @@
 package MicroMis::Controller::Log;
 
-use strict;
-use warnings;
-
 use Mojo::Base 'Mojolicious::Controller';
 
-my $log_model = MicroMis::Model::Log->new;
+our $log_model = MicroMis::Model::Log->new;
 
 # 日志列表
 # http://127.0.0.1:3000/api/v1/logs

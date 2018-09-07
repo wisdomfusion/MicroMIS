@@ -1,9 +1,6 @@
 package MicroMis::Controller::Tag;
 
-use strict;
-use warnings;
-
-use Mojo::Base 'Mojolicious::Controller';
+our Mojo::Base 'Mojolicious::Controller';
 
 my $tag_model = MicroMis::Model::Tag->new;
 

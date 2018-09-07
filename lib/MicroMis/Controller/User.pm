@@ -1,8 +1,5 @@
 package MicroMis::Controller::User;
 
-use strict;
-use warnings;
-
 use Mojo::Base 'Mojolicious::Controller';
 use Data::Dumper qw( Dumper );
 use Carp qw( croak );
@@ -11,7 +8,7 @@ use FindBin;
 use lib "$FindBin::Bin/../..";
 use MicroMis::Util qw( encrypt_password );
 
-my $user_model = MicroMis::Model::User->new;
+our $user_model = MicroMis::Model::User->new;
 
 # 用户列表
 # http://127.0.0.1:3000/api/v1/users

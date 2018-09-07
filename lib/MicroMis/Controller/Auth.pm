@@ -1,8 +1,5 @@
 package MicroMis::Controller::Auth;
 
-use strict;
-use warnings;
-
 use Mojo::Base 'Mojolicious::Controller';
 use FindBin;
 

@@ -1,11 +1,8 @@
 package MicroMis::Controller::Project;
 
-use strict;
-use warnings;
-
 use Mojo::Base 'Mojolicious::Controller';
 
-my $project_model = MicroMis::Model::Project->new;
+our $project_model = MicroMis::Model::Project->new;
 
 # project 列表
 # http://127.0.0.1:3000/api/v1/projects

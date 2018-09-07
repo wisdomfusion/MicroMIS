@@ -1,11 +1,8 @@
 package MicroMis::Controller::Node;
 
-use strict;
-use warnings;
-
 use Mojo::Base 'Mojolicious::Controller';
 
-my $node_model = MicroMis::Model::Node->new;
+our $node_model = MicroMis::Model::Node->new;
 
 # 信息列表
 # http://127.0.0.1:3000/api/v1/nodes

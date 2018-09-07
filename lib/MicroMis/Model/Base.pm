@@ -1,8 +1,5 @@
 package MicroMis::Model::Base;
 
-use strict;
-use warnings;
-
 use Mojo::Base -base;
 use Storable qw( dclone );
 

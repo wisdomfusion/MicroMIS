@@ -1,11 +1,8 @@
 package MicroMis::Controller::Category;
 
-use strict;
-use warnings;
-
 use Mojo::Base 'Mojolicious::Controller';
 
-my $cate_model = MicroMis::Model::Category->new;
+our $cate_model = MicroMis::Model::Category->new;
 
 # 分类列表
 # http://127.0.0.1:3000/api/v1/cates

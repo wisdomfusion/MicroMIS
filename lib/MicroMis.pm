@@ -1,14 +1,11 @@
 package MicroMis;
 
-use strict;
-use warnings;
-
-our $VERSION = '0.0.1';
-
 use Mojo::Base 'Mojolicious';
 
 use MicroMis::Plugin::AppHelpers;
 use MicroMis::Model;
+
+our $VERSION = '0.0.2';
 
 sub startup {
   my $self = shift;
