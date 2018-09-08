@@ -1,7 +1,13 @@
 *.komodoproject
 .komodotools
 .idea
+
 *.swp
+
+*.bak
+*.bkp
+*_bak
+*_bkp
 
 app.conf
 
