@@ -2,7 +2,7 @@ package MicroMis::Controller::Log;
 
 use Mojo::Base 'Mojolicious::Controller';
 
-our $log_model = MicroMis::Model::Log->new;
+my $log_model = MicroMis::Model::Log->new;
 
 # 日志列表
 # http://127.0.0.1:3000/api/v1/logs

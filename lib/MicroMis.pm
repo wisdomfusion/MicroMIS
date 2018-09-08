@@ -61,9 +61,11 @@ sub startup {
   $authed->route( '/tags' )->via( 'GET' )->to( 'tag#index' );
   
   # 分类（行业）
-  $authed->route( '/cates'    )->via( 'GET'    )->to( 'category#index' );
-  $authed->route( '/cate'     )->via( 'POST'   )->to( 'category#store' );
-  $authed->route( '/cate/:id' )->via( 'DELETE' )->to( 'category#destroy' );
+  $authed->route( '/cates'      )->via( 'GET'    )->to( 'category#index' );
+  $authed->route( '/cates/sort' )->via( 'GET'    )->to( 'category#sort' );
+  $authed->route( '/cate'       )->via( 'POST'   )->to( 'category#store' );
+  $authed->route( '/cate/:id'   )->via( 'PUT'    )->to( 'category#update' );
+  $authed->route( '/cate/:id'   )->via( 'DELETE' )->to( 'category#destroy' );
   
   # 信息节点
   $authed->route( '/nodes'    )->via( 'GET'    )->to( 'node#index' );

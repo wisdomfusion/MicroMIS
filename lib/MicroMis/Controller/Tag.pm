@@ -1,6 +1,6 @@
 package MicroMis::Controller::Tag;
 
-our Mojo::Base 'Mojolicious::Controller';
+use Mojo::Base 'Mojolicious::Controller';
 
 my $tag_model = MicroMis::Model::Tag->new;
 

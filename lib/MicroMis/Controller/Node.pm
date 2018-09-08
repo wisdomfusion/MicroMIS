@@ -2,7 +2,7 @@ package MicroMis::Controller::Node;
 
 use Mojo::Base 'Mojolicious::Controller';
 
-our $node_model = MicroMis::Model::Node->new;
+my $node_model = MicroMis::Model::Node->new;
 
 # 信息列表
 # http://127.0.0.1:3000/api/v1/nodes

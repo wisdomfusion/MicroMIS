@@ -2,7 +2,7 @@ package MicroMis::Controller::Project;
 
 use Mojo::Base 'Mojolicious::Controller';
 
-our $project_model = MicroMis::Model::Project->new;
+my $project_model = MicroMis::Model::Project->new;
 
 # project 列表
 # http://127.0.0.1:3000/api/v1/projects

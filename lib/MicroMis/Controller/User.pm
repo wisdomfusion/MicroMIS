@@ -8,7 +8,7 @@ use FindBin;
 use lib "$FindBin::Bin/../..";
 use MicroMis::Util qw( encrypt_password );
 
-our $user_model = MicroMis::Model::User->new;
+my $user_model = MicroMis::Model::User->new;
 
 # 用户列表
 # http://127.0.0.1:3000/api/v1/users

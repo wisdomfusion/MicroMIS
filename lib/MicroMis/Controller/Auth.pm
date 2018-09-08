@@ -2,11 +2,8 @@ package MicroMis::Controller::Auth;
 
 use Mojo::Base 'Mojolicious::Controller';
 use Carp qw( croak );
-
 use FindBin;
-
 use lib "$FindBin::Bin/../..";
-
 use MicroMis::Util qw( check_password );
 
 my $coll_users = MicroMis::Model->db->get_collection( 'users');
