@@ -1,6 +1,7 @@
 package MicroMis::Controller::Category;
 
 use Mojo::Base 'Mojolicious::Controller';
+use Carp qw( croak );
 
 our $cate_model = MicroMis::Model::Category->new;
 
@@ -19,15 +20,19 @@ sub index {
 # POST
 sub store {
   my $c = shift;
-  
-  my $title = $c->param( 'title' );
-  my $pid   = $c->param( 'pid' ) || undef;
+  my $params = $c->req->params->to_hash;
   
   my $v = $c->validation;
-  $v->required( 'title' );
+  $v->input( $params );
+  $v->required( 'title' )->size( 2, 20 );
   
   return $c->error( 422, '提供的数据不合法！' )
     if $v->has_error;
+  
+  my $title = $v->param( 'title' );
+  my $pid   = $v->param( 'pid' ) || undef;
+  
+  croak $title;
   
   return $c->error( 400, '主分类名称已存在！' )
     if ( !$pid && $cate_model->count( { title => $title } ) );

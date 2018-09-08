@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Crypt::Eksblowfish::Bcrypt qw(bcrypt_hash en_base64);
-
+use Carp qw( croak );
 use Exporter 'import';
 our @EXPORT_OK = qw(encrypt_password check_password);
 
@@ -12,7 +12,7 @@ our @EXPORT_OK = qw(encrypt_password check_password);
 sub encrypt_password {
   my $password = shift;
 
-  my $salt = shift || salt(); 
+  my $salt = shift || _salt();
 
   # Encrypt the password 
   my $hash = bcrypt_hash( {
@@ -29,12 +29,11 @@ sub encrypt_password {
 sub check_password {
   my ( $plain_password, $hashed_password ) = @_;
   my ( $salt ) = split( '-', $hashed_password, 2 );
-  print $salt;
   return length $salt == 16 && encrypt_password( $plain_password, $salt ) eq $hashed_password;
 }
 
 # Return a random salt
-sub salt {
+sub _salt {
   my $itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   my $salt   = '';
   $salt     .= substr( $itoa64, int( rand( 64 ) ), 1 ) while length( $salt ) < 16;

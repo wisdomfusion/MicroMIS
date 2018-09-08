@@ -1,11 +1,15 @@
 package MicroMis::Controller::Auth;
 
 use Mojo::Base 'Mojolicious::Controller';
+use Carp qw( croak );
+
 use FindBin;
 
 use lib "$FindBin::Bin/../..";
 
 use MicroMis::Util qw( check_password );
+
+my $coll_users = MicroMis::Model->db->get_collection( 'users');
 
 # 登录接口
 # http://127.0.0.1:3000/api/v1/login
@@ -14,15 +18,22 @@ sub login {
   my $c = shift;
   my $params = $c->req->params->to_hash;
   
-  return $c->error(422, '提供的数据非法')
-    unless ( $params->{ name } && $params->{ pass } );
+  my $v = $c->validation;
+  $v->input( $params );
+  $v->required( 'name' );
+  $v->required( 'pass' );
   
-  my $user = MicroMis::Model::User->find_one( { name => lc $params->{ name }} );
+  return $c->error(422, '提供的数据不合法')
+    if $v->has_error;
+  
+  my ( $name, $pass ) = ( $v->param( 'name' ), $v->param( 'pass' ) );
+  
+  my $user = $coll_users->find_one( { name => lc $name } );
 
   return $c->reply->not_found if !$user;
 
   return $c->error( 400, '用户名或密码错误' )
-    unless ( check_password( $params->{ pass }, $user->{pass} ) );
+    unless ( check_password( $pass, $user->{ pass } ) );
   
   my $payload = {
     oid  => $user->{ _id }->value,
