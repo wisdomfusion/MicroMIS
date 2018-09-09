@@ -6,16 +6,113 @@
 
 MicroMis API Documents
 
+=DESCRIPTION
+
+接口请求 URL 前缀：C</api/v1>
+
 =head1 Modules
 
-=head2 User
-
-
-
+Authorization with JWT
 
 =head2 Auth
 
 
+=head3 登录
+
+B<描述>
+
+登录授权，获取 token
+
+B<请求方法>
+
+POST
+
+B<请求 URL>
+
+C</login>
+
+B<请求参数>
+
+    NAME            NULL        TYPE          DESCRIPTION
+    -------------   ---------   -----------   --------------------
+    name            NOT NULL    string
+    pass            NOT NULL    string
+
+B<响应参数>
+
+    NAME            DESCRIPTION
+    -------------   -------------------
+
+B<响应示例>
+
+    {
+        "data": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE1MzY0NzU5OTgsIm9pZCI6IjViODg4MGY1ZjBmODdjODBiOWU3MWVlMiJ9.bX9WEB1E6giYf1m-DaaaxRJscQ3bFw3CxXMe_bMvEWU"
+        },
+        "message": ""
+    }
+
+=head3 退出
+
+B<描述>
+
+用户退出，token 加入黑名单
+
+B<请求方法>
+
+POST
+
+B<请求 URL>
+
+C</logout>
+
+B<请求参数>
+
+    NAME            NULL        TYPE          DESCRIPTION
+    -------------   ---------   -----------   --------------------
+    token           NOT NULL    string        提供当前登录令牌
+
+B<响应参数>
+
+    NAME            DESCRIPtion
+    -------------   ---------------------
+    data
+    message         提示信息
+
+B<响应示例>
+
+=head3 更新令牌
+
+B<描述>
+
+换取新令牌
+
+B<请求方法>
+
+POST
+
+B<请求 URL>
+
+C</renew_token>
+
+B<请求参数>
+
+    NAME            NULL        TYPE          DESCRIPTION
+    -------------   ---------   -----------   --------------------
+    token           NOT NULL    string        提供当前登录令牌
+
+B<响应参数>
+
+    NAME            DESCRIPtion
+    -------------   ---------------------
+    data.token      新令牌
+    message         提示信息
+
+B<响应示例>
+
+
+
+=head2 User
 
 
 =head2 Category

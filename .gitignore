@@ -8,6 +8,7 @@
 *.bkp
 *_bak
 *_bkp
+.#*
 
 app.conf
 

@@ -2,7 +2,7 @@ package MicroMis::Model::Category;
 
 use base qw( MicroMis::Model::Base );
 
-sub collection { 'categories' };
+sub collection { 'categories' }
 
 sub hidden_fields { qw( ) }
 

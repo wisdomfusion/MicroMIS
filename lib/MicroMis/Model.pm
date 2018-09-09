@@ -23,30 +23,30 @@ my $_per_page;
 
 # 初始化数据库连接，分页大小
 sub init {
-  my ( $class, $config ) = @_;
-  
-  croak 'invalid db config'
-    unless $config && $config->{ host } && $config->{ port } && $config->{ db };
-  
-  unless ( $_db ) {
-    my $client = MongoDB::MongoClient->new(
-      host => "mongodb://$config->{host}:$config->{port}",
-    );
-    $_db = $client->get_database( $config->{ db } );
-  }
-  
-  $_per_page = $config->{ per_page } || 20;
+    my ( $class, $config ) = @_;
+
+    croak 'Invalid db config'
+        unless $config && $config->{host} && $config->{port} && $config->{db};
+
+    unless ($_db) {
+        my $client = MongoDB::MongoClient->new(
+            host => "mongodb://$config->{host}:$config->{port}"
+        );
+        $_db = $client->get_database( $config->{db} );
+    }
+
+    $_per_page = $config->{per_page} || 20;
 }
 
 # 数据库连接
 sub db {
-  return $_db if $_db;
-  croak 'Init Models First!';
+    return $_db if $_db;
+    croak 'Init Models First!';
 }
 
 # 数据分页大小
 sub per_page {
-  $_per_page;
+    $_per_page;
 }
 
 1;
