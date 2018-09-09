@@ -6,7 +6,7 @@
 
 MicroMis API Documents
 
-=DESCRIPTION
+=head1 DESCRIPTION
 
 接口请求 URL 前缀：C</api/v1>
 
