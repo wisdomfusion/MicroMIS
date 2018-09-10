@@ -146,7 +146,7 @@ sub sort {
 }
 
 # 删除分类
-# http://127.0.0.1:3000/api/v1/cate
+# http://127.0.0.1:3000/api/v1/cate/:id
 # DELETE
 sub destroy {
     my $c = shift;
