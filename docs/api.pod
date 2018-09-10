@@ -16,16 +16,17 @@ Authorization with JWT
 
 =head2 Auth
 
+C<MicroMis::Controller::Auth>
 
 =head3 登录
-
-B<请求方法>
-
-POST
 
 B<请求 URL>
 
 C</login>
+
+B<请求方法>
+
+POST
 
 B<请求参数>
 
@@ -50,13 +51,13 @@ B<响应示例>
 
 =head3 退出
 
-B<请求方法>
-
-POST
-
 B<请求 URL>
 
 C</logout>
+
+B<请求方法>
+
+POST
 
 B<请求参数>
 
@@ -75,17 +76,13 @@ B<响应示例>
 
 =head3 更新令牌
 
-B<描述>
+B<请求 URL>
 
-换取新令牌
+C</renew_token>
 
 B<请求方法>
 
 POST
-
-B<请求 URL>
-
-C</renew_token>
 
 B<请求参数>
 
@@ -106,15 +103,17 @@ B<响应示例>
 
 =head2 User
 
+C<MicroMis::Controller::User>
+
 =head3 用户列表
-
-B<请求方法>
-
-GET
 
 B<请求 URL>
 
 C</users>
+
+B<请求方法>
+
+GET
 
 B<请求参数>
 
@@ -130,13 +129,13 @@ B<响应示例>
 
 =head3 添加用户
 
-B<请求方法>
-
-POST
-
 B<请求 URL>
 
 C</user>
+
+B<请求方法>
+
+POST
 
 B<请求参数>
 
@@ -155,13 +154,13 @@ B<响应示例>
 
 =head3 用户详情
 
-B<请求方法>
-
-GET
-
 B<请求 URL>
 
 C</user/:id>
+
+B<请求方法>
+
+GET
 
 B<请求参数>
 
@@ -180,13 +179,13 @@ B<响应示例>
 
 =head3 编辑用户
 
-B<请求方法>
-
-PUT
-
 B<请求 URL>
 
 C</user/:id>
+
+B<请求方法>
+
+PUT
 
 B<请求参数>
 
@@ -206,13 +205,13 @@ B<响应示例>
 
 =head3 删除用户
 
-B<请求方法>
-
-DELETE
-
 B<请求 URL>
 
 C</user/:id>
+
+B<请求方法>
+
+DELETE
 
 B<请求参数>
 
@@ -226,15 +225,17 @@ B<响应示例>
 
 =head2 Category
 
+C<MicroMis::Controller::Category>
+
 =head3 分类列表
-
-B<请求方法>
-
-GET
 
 B<请求 URL>
 
 C</cates>
+
+B<请求方法>
+
+GET
 
 B<请求参数>
 
@@ -255,13 +256,13 @@ B<响应示例>
 
 =head3 添加分类
 
-B<请求方法>
-
-POST
-
 B<请求 URL>
 
 C</cate>
+
+B<请求方法>
+
+POST
 
 B<请求参数>
 
@@ -284,13 +285,13 @@ B<响应示例>
 
 =head3 编辑分类
 
-B<请求方法>
-
-PUT
-
 B<请求 URL>
 
 C</cate/:id>
+
+B<请求方法>
+
+PUT
 
 B<请求参数>
 
@@ -310,13 +311,13 @@ B<响应示例>
 
 =head3 分类排序
 
-B<请求方法>
-
-POST
-
 B<请求 URL>
 
 C</cates/sort>
+
+B<请求方法>
+
+POST
 
 B<请求参数>
 
@@ -335,13 +336,13 @@ B<响应示例>
 
 =head3 删除分类
 
-B<请求方法>
-
-DELETE
-
 B<请求 URL>
 
 C</cate/:id>
+
+B<请求方法>
+
+DELETE
 
 B<请求参数>
 
@@ -360,15 +361,17 @@ B<响应示例>
 
 =head2 Project
 
+C<MicroMis::Controller::Project>
+
 =head3 Project 列表
-
-B<请求方法>
-
-GET
 
 B<请求 URL>
 
 C</projects>
+
+B<请求方法>
+
+GET
 
 B<请求参数>
 
@@ -386,13 +389,13 @@ B<响应示例>
 
 =head3 添加 Project
 
-B<请求方法>
-
-POST
-
 B<请求 URL>
 
 C</project>
+
+B<请求方法>
+
+POST
 
 B<请求参数>
 
@@ -417,13 +420,13 @@ B<响应示例>
 
 =head3 Project 详情
 
-B<请求方法>
-
-GET
-
 B<请求 URL>
 
 C</project/:id>
+
+B<请求方法>
+
+GET
 
 B<请求参数>
 
@@ -442,13 +445,13 @@ B<响应示例>
 
 =head3 编辑 Project
 
-B<请求方法>
-
-PUT
-
 B<请求 URL>
 
 C</project/:id>
+
+B<请求方法>
+
+PUT
 
 B<请求参数>
 
@@ -470,13 +473,13 @@ B<响应示例>
 
 =head3 删除 Project
 
-B<请求方法>
-
-DELETE
-
 B<请求 URL>
 
 C</project/:id>
+
+B<请求方法>
+
+DELETE
 
 B<请求参数>
 
@@ -494,13 +497,13 @@ B<响应示例>
 
 =head3 Project 基本信息列表
 
-B<请求方法>
-
-GET
-
 B<请求 URL>
 
 C</project/list>
+
+B<请求方法>
+
+GET
 
 B<请求参数>
 
@@ -518,27 +521,31 @@ B<响应示例>
 
 =head2 Node
 
+C<MicroMis::Controller::Node>
 
 
 
 
 =head2 Tag
 
-
+C<MicroMis::Controller::Tag>
 
 
 
 =head2 Log
 
+C<MicroMis::Controller::Log>
+
+
 =head3 接口标题
-
-B<请求方法>
-
-GET
 
 B<请求 URL>
 
 C</URL>
+
+B<请求方法>
+
+GET
 
 B<请求参数>
 
