@@ -1,0 +1,75 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+MicroMIS
+
+=head1 DESCRIPTION
+
+B<Micro Management Information System> for information with dynamic fields, using Perl and L<Mojolicious|https://mojolicious.org/>, with MongoDB as backend database.
+
+The system depends on some modules listed as follows:
+
+=over
+
+=item *
+
+L<Mojolicious>
+
+=item *
+
+L<MongoDB>
+
+=item *
+
+L<BSON::OID>
+
+=item  *
+
+L<Crypt::Eksblowfish::Bcrypt>
+
+=back
+
+=head1 INSTALLATION
+
+=head2 Install Perl
+
+B<macOS or Linux>
+
+    $ \curl -L https://install.perlbrew.pl | bash
+    $ source ~/perl5/perlbrew/etc/bashrc
+    $ echo 'source ~/perl5/perlbrew/etc/bashrc' >> ~/.bash_profile
+    $ perlbrew init
+    $ perlbrew install perl-5.28.0
+    $ perlbrew switch perl-5.28.0
+    $ perlbrew install-cpanm
+
+B<Windows>
+
+Install L<Strawberry Perl|http://strawberryperl.com/> or L<ActiveState Perl|http://www.activestate.com/activeperl/downloads> first, and
+
+    cpan App::cpanminus
+
+=head2 Init and run the application
+
+    $ cd MicroMIS/
+    $ cpanm --installdeps .
+    $ morbo script/app.pl
+
+=head2 Client Interface (React)
+
+Install node.js 8+ first, and
+
+    cd client/
+    npm i yarn
+    yarn install
+    yarn build
+
+=head1 INSTRUCTIONS
+
+
+=head1 CONTRIBUTIONS
+
+=cut
