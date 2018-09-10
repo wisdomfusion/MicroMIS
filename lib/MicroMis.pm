@@ -51,11 +51,11 @@ sub startup {
     # 项目
     $authed->route('/projects'    )->via('GET'   )->to('project#index');
     $authed->route('/project'     )->via('POST'  )->to('project#store');
+    $authed->route('/project/list')->via('GET'   )->to('project#list');
+    $authed->route('/project/tpl' )->via('GET'   )->to('project#template');
     $authed->route('/project/:id' )->via('GET'   )->to('project#show');
     $authed->route('/project/:id' )->via('PUT'   )->to('project#update');
     $authed->route('/project/:id' )->via('DELETE')->to('project#destroy');
-    $authed->route('/project/list')->via('GET'   )->to('project#list');
-    $authed->route('/project/tpl' )->via('GET'   )->to('project#template');
 
     # 标签
     $authed->route('/tags')->via('GET')->to('tag#index');

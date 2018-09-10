@@ -39,12 +39,12 @@ sub index {
 sub store {
     my $c = shift;
 
-    my $name = $c->param('name');
-    my $pass = $c->param('pass');
-
     my $v = $c->validation;
     $v->required('name');
     $v->required('pass');
+
+    my $name = $v->param('name');
+    my $pass = $v->param('pass');
 
     return $c->error( 422, '提供的数据不合法！' )
         if $v->has_error;
@@ -100,10 +100,10 @@ sub update {
     my $params = $c->req->params->to_hash;
 
     delete $params->{name}
-        if ( exists $params->{name} );
+        if exists $params->{name};
 
     $params->{pass} = encrypt_password( $params->{pass} )
-        if ( exists $params->{pass} );
+        if exists $params->{pass};
 
     $params->{updated_at} = time;
 
