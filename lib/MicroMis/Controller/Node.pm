@@ -15,7 +15,7 @@ sub index {
 
     my $cursor = $node_model->find($filter);
     my $total  = $node_model->count($filter);
-    my $res    = $node_model->paginate( $cursor, $total, $params );
+    my $res    = $node_model->paginate($cursor, $total, $params);
 
     $c->success($res);
 }

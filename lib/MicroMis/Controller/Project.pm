@@ -15,7 +15,7 @@ sub index {
 
     my $cursor = $project_model->find($filter);
     my $total  = $project_model->count($filter);
-    my $res    = $project_model->paginate( $cursor, $total, $params );
+    my $res    = $project_model->paginate($cursor, $total, $params);
 
     $c->success($res);
 }
@@ -24,22 +24,22 @@ sub index {
 # http://127.0.0.1:3000/api/v1/project
 # POST
 sub store {
-    my $c = shift;
+    my $c      = shift;
     my $params = $c->req->params->to_hash;
 
     my $v = $c->validation;
-    $v->required( 'title' )->size( 2, 20 );
-    $v->required( 'slug' );
-    $v->required( 'fields' );
+    $v->required('title')->size(2, 20);
+    $v->required('slug');
+    $v->required('fields');
 
-    return $c->error( 422, '提供的数据不合法！')
+    return $c->error(422, '提供的数据不合法！')
         if $v->has_error;
 
-    my $now = time;
+    my $now      = time;
     my $document = {
-        title       => $v->param( 'title' ),
-        slug        => $v->param( 'slug' ),
-        fields      => $v->param( 'fields' ),
+        title       => $v->param('title'),
+        slug        => $v->param('slug'),
+        fields      => $v->param('fields'),
         description => $params->{description} || undef,
         created_at  => $now,
         updated_at  => $now,
@@ -48,14 +48,14 @@ sub store {
 
     my $res = $project_model->add($document);
 
-    return $c->error( 400, '添加 Project 失败！')
+    return $c->error(400, '添加 Project 失败！')
         unless $res->inserted_id;
 
-    my $oid = $res->inserted_id;
+    my $oid     = $res->inserted_id;
     my $project = $project_model->find_id($oid);
     $project->{_id} = $project->{_id}->value;
 
-    $c->success( { project => $project }, '成功添加 Project！' );
+    $c->success({project => $project}, '成功添加 Project！');
 }
 
 # project 详情
@@ -64,12 +64,12 @@ sub store {
 sub show {
     my $c = shift;
 
-    my $oid = $c->oid( $c->param('id') );
+    my $oid     = $c->oid($c->param('id'));
     my $project = $project_model->find_id($oid);
 
-    if ( $project ) {
+    if ($project) {
         $project->{_id} = $project->{id}->value;
-        return $c->success( { project => $project } );
+        return $c->success({project => $project});
     }
 
     undef;
@@ -81,14 +81,14 @@ sub show {
 sub update {
     my $c = shift;
 
-    my $oid    = $c->oid( $c->param('id') );
+    my $oid    = $c->oid($c->param('id'));
     my $params = $c->req->params->to_hash;
 
     my $v = $c->validation;
-    $v->size( 2, 20 );
-    $v->size( 2, 20 );
+    $v->optional('title', 'trim')->size(2, 20);
+    $v->optional('slug',  'trim')->size(2, 20);
 
-    return $c->error( 422, '提供的数据不合法！' )
+    return $c->error(422, '提供的数据不合法！')
         if $v->has_error;
 
     my $update_params = {};
@@ -104,12 +104,12 @@ sub update {
 
     $update_params->{updated_at} = time;
 
-    $project_model->update( { _id => $oid }, { '$set' => $update_params } );
+    $project_model->update({_id => $oid}, {'$set' => $update_params});
 
     my $project = $project_model->find_id($oid);
     $project->{_id} = $project->{_id}->value;
 
-    $c->success( { project => $project }, '成功编辑 Project！' );
+    $c->success({project => $project}, '成功编辑 Project！');
 }
 
 # 删除 project
@@ -120,13 +120,12 @@ sub destroy {
 
     my $project_id = $c->param('id');
 
-    return $c->error( 400, '该 Project 下存在有效信息，无法删除！' )
-        if MicroMis::Model::Node->count( { project_id => $project_id });
+    return $c->error(400, '该 Project 下存在有效信息，无法删除！')
+        if MicroMis::Model::Node->count({project_id => $project_id});
 
+    $project_model->delete_one({_id => $c->oid($project_id)});
 
-    $project_model->delete_one( { _id => $c->oid($project_id) } );
-
-    $c->success( {}, '成功删除 Project！');
+    $c->success({}, '成功删除 Project！');
 }
 
 # project 基本信息列表
@@ -136,9 +135,9 @@ sub list {
     my $c = shift;
 
     my @projects
-        = $project_model->find( {} )->fields( { _id => 1 }, { title => 1 } );
+        = $project_model->find({})->fields({_id => 1}, {title => 1});
 
-    $c->success( { projects => \@projects } );
+    $c->success({projects => \@projects});
 }
 
 # project 信息模板

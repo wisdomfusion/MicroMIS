@@ -15,7 +15,7 @@ sub index {
 
     my $cursor = $log_model->find($filter);
     my $total  = $log_model->count($filter);
-    my $res    = $log_model->paginate( $cursor, $total, $params );
+    my $res    = $log_model->paginate($cursor, $total, $params);
 
     $c->success($res);
 }

@@ -13,7 +13,7 @@ sub index {
 
     my $cursor = $tag_model->find;
     my $total  = $tag_model->count;
-    my $res    = $tag_model->paginate( $cursor, $total, $params );
+    my $res    = $tag_model->paginate($cursor, $total, $params);
 
     $c->success($res);
 }

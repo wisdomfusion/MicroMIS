@@ -23,21 +23,22 @@ sub encrypt_password {
     );
 
     # Return the salt and the encrypted password
-    return join( '-', $salt, en_base64($hash) );
+    return join('-', $salt, en_base64($hash));
 }
 
 # Check if the passwords match
 sub check_password {
-    my ( $plain_password, $hashed_password ) = @_;
-    my ($salt) = split( '-', $hashed_password, 2 );
-    return encrypt_password( $plain_password, $salt ) eq $hashed_password;
+    my ($plain_password, $hashed_password) = @_;
+    my ($salt) = split('-', $hashed_password, 2);
+    return encrypt_password($plain_password, $salt) eq $hashed_password;
 }
 
 # Return a random salt
 sub _salt {
-    my $itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    my $salt   = '';
-    $salt     .= substr( $itoa64, int( rand(64) ), 1 ) while length($salt) < 16;
+    my $itoa64
+        = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    my $salt = '';
+    $salt .= substr($itoa64, int(rand(64)), 1) while length($salt) < 16;
 
     return $salt;
 }

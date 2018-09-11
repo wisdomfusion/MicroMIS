@@ -23,16 +23,15 @@ my $_per_page;
 
 # 初始化数据库连接，分页大小
 sub init {
-    my ( $class, $config ) = @_;
+    my ($class, $config) = @_;
 
     croak 'Invalid db config'
         unless $config && $config->{host} && $config->{port} && $config->{db};
 
     unless ($_db) {
         my $client = MongoDB::MongoClient->new(
-            host => "mongodb://$config->{host}:$config->{port}"
-        );
-        $_db = $client->get_database( $config->{db} );
+            host => "mongodb://$config->{host}:$config->{port}");
+        $_db = $client->get_database($config->{db});
     }
 
     $_per_page = $config->{per_page} || 20;

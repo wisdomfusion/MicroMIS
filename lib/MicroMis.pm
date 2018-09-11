@@ -5,13 +5,13 @@ use Mojo::Base 'Mojolicious';
 use MicroMis::Plugin::AppHelpers;
 use MicroMis::Model;
 
-our $VERSION = '0.0.2';
+our $VERSION = '0.1.0';
 
 sub startup {
     my $self = shift;
 
     # config
-    $self->plugin( 'Config' => { file => 'app.conf' } );
+    $self->plugin('Config' => {file => 'app.conf'});
 
     # helpers
     $self->plugin('MicroMis::Plugin::AppHelpers');
@@ -25,7 +25,7 @@ sub startup {
     # 路由：
     #
     my $r = $self->routes;
-    $r->any( '/' => sub { $_[0]->reply->static('index.html') } );
+    $r->any('/' => sub { $_[0]->reply->static('index.html') });
 
     #
     # API 路由：

@@ -20,33 +20,33 @@ sub login {
     $v->required('name');
     $v->required('pass');
 
-    return $c->error( 422, '提供的数据不合法' )
+    return $c->error(422, '提供的数据不合法')
         if $v->has_error;
 
-    my ( $name, $pass ) = ( $v->param('name'), $v->param('pass') );
+    my ($name, $pass) = ($v->param('name'), $v->param('pass'));
 
-    my $user = $coll_users->find_one( { name => lc $name } );
+    my $user = $coll_users->find_one({name => lc $name});
 
     return $c->reply->not_found if !$user;
 
-    return $c->error( 400, '用户名或密码错误' )
-        unless ( check_password( $pass, $user->{pass} ) );
+    return $c->error(400, '用户名或密码错误')
+        unless (check_password($pass, $user->{pass}));
 
     my $payload = {
         oid  => $user->{_id}->value,
         name => $user->{name},
-        exp  => time + int( $c->config('jwt_ttl') )
+        exp  => time + int($c->config('jwt_ttl'))
     };
     my $token = $c->jwt_encode($payload);
 
-    return $c->success( { token => $token } );
+    return $c->success({token => $token});
 }
 
 # 退出接口
 # http://127.0.0.1:3000/api/v1/logout
 # POST
 sub logout {
-    my ( $c, $token ) = shift;
+    my ($c, $token) = shift;
 
     return undef;
 }
@@ -60,25 +60,26 @@ sub renew_token {
     my $headers       = $c->req->headers;
     my $authorization = $headers->authorization;
 
-    return $c->error( 401, '未授权，未提供有效的令牌' )
-        unless ( $authorization && $authorization =~ /^Bearer/ );
+    return $c->error(401, '未授权，未提供有效的令牌')
+        unless ($authorization && $authorization =~ /^Bearer/);
 
-    my ( $_, $token ) = split( ' ', $authorization );
+    my ($_, $token) = split(' ', $authorization);
 
     if ($token) {
         $token = $c->jwt_decode($token);
 
         if (   exists $token->{oid}
             && exists $token->{name}
-            && exists $token->{exp} ) {
+            && exists $token->{exp})
+        {
             my $payload = {
                 oid  => $token->{oid},
                 name => $token->{name},
-                exp  => time + int( $c->config('jwt_ttl') )
+                exp  => time + int($c->config('jwt_ttl'))
             };
 
             my $new_token = $c->jwt_encode($payload);
-            return $c->success( { token => $new_token } );
+            return $c->success({token => $new_token});
         }
     }
 
@@ -92,17 +93,17 @@ sub check {
     my $headers       = $c->req->headers;
     my $authorization = $headers->authorization;
 
-    return $c->error( 401, '未授权，未提供有效的令牌' )
-        unless ( $authorization && $authorization =~ /^Bearer/ );
+    return $c->error(401, '未授权，未提供有效的令牌')
+        unless ($authorization && $authorization =~ /^Bearer/);
 
-    my ( $_, $token ) = split( ' ', $authorization );
+    my ($_, $token) = split(' ', $authorization);
 
     if ($token) {
         $token = $c->jwt_decode($token);
         return 1 if $token->{oid} && $token->{name} && $token->{exp} > time;
     }
 
-    $c->error( 401, '未授权，请登录后重试' );
+    $c->error(401, '未授权，请登录后重试');
 }
 
 1;
