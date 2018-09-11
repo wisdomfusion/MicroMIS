@@ -38,8 +38,8 @@ sub store {
     my $c = shift;
 
     my $v = $c->validation;
-    $v->required('name');
-    $v->required('pass');
+    $v->required('name', 'trim');
+    $v->required('pass', 'trim');
 
     my $name = $v->param('name');
     my $pass = $v->param('pass');
