@@ -61,13 +61,13 @@ sub store {
 
     my $res = $user_model->add($document);
 
-    return $c->error(400, '添加用户失败！')
+    return $c->error(400, '用户添加失败！')
         unless $res->inserted_id;
 
     my $user = $user_model->find_id($res->inserted_id);
     $user->{_id} = $user->{_id}->value;
 
-    $c->success({user => $user}, '成功添加用户！');
+    $c->success({user => $user}, '用户添加成功！');
 }
 
 # 用户详情
@@ -98,7 +98,7 @@ sub update {
     my $c = shift;
 
     my $oid    = $c->oid($c->param('id'));
-    my $params = $c->req->params->to_hash;
+    my $params = $c->req->body_params->to_hash;
 
     delete $params->{name}
         if exists $params->{name};
@@ -108,29 +108,33 @@ sub update {
 
     $params->{updated_at} = time;
 
-    $user_model->update({_id => $oid}, {'$set' => $params});
+    my $res = $user_model->update({_id => $oid}, {'$set' => $params});
+
+    return $c->error(400, '编辑用户失败！')
+        unless $res->acknowleged;
 
     my $user = $user_model->find_id($oid);
     $user->{_id} = $user->{_id}->value;
 
-    $c->success({user => $user}, '成功编辑用户！');
+    $c->success({user => $user}, '编辑用户成功！');
 }
 
 # 删除用户
 # http://127.0.0.1:3000/api/v1/user/:id
 # DELETE
 sub destroy {
-    my $c = shift;
+    my $c   = shift;
+    my $oid = $c->param('id') ? $c->oid($c->param('id')) : undef;
 
-    my $oid  = $c->oid($c->param('id'));
     my $user = $user_model->find_id($oid);
 
     return $c->error(403, '禁止删除根用户')
         if $user->{name} eq 'admin';
 
-    # TODO: 用户存在 project 或 node 时禁止删除
+    my $res = $user_model->delete_one({_id => $oid});
 
-    $user_model->delete_one({_id => $oid});
+    return $c->error(400, '删除用户失败！')
+        unless $res->acknowleged;
 
     $c->success({}, '成功删除用户！');
 }

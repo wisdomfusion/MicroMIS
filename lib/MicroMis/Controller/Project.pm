@@ -9,7 +9,7 @@ my $project_model = MicroMis::Model::Project->new;
 # GET
 sub index {
     my $c      = shift;
-    my $params = $c->req->params->to_hash;
+    my $params = $c->req->query_params->to_hash;
 
     my $filter = {};
 
@@ -25,34 +25,29 @@ sub index {
 # POST
 sub store {
     my $c      = shift;
-    my $params = $c->req->params->to_hash;
+    my $params = $c->req->body_params->to_hash;
 
     my $v = $c->validation;
-    $v->required('title')->size(2, 20);
-    $v->required('slug');
+    $v->required('title', 'trim')->size(2, 20);
+    $v->required('slug', 'trim')->size(2, 20);
     $v->required('fields');
+    $v->optional('description');
 
     return $c->error(422, '提供的数据不合法！')
         if $v->has_error;
 
     my $now      = time;
-    my $document = {
-        title       => $v->param('title'),
-        slug        => $v->param('slug'),
-        fields      => $v->param('fields'),
-        description => $params->{description} || undef,
-        created_at  => $now,
-        updated_at  => $now,
-        deleted_at  => undef,
-    };
+    my $document = $v->output;
+    $document->{created_at} = $now;
+    $document->{updated_at} = $now;
+    $document->{deleted_at} = undef;
 
     my $res = $project_model->add($document);
 
     return $c->error(400, '添加 Project 失败！')
         unless $res->inserted_id;
 
-    my $oid     = $res->inserted_id;
-    my $project = $project_model->find_id($oid);
+    my $project = $project_model->find_id($res->inserted_id);
     $project->{_id} = $project->{_id}->value;
 
     $c->success({project => $project}, '成功添加 Project！');
@@ -64,8 +59,13 @@ sub store {
 sub show {
     my $c = shift;
 
-    my $oid     = $c->oid($c->param('id'));
-    my $project = $project_model->find_id($oid);
+    my $project_id = $c->param('id');
+
+    return $c->error(422, '提供的数据不合法！')
+        if !$project_id || $project_id !~ qr/^[a-f\d]{24}$/;
+
+
+    my $project = $project_model->find_id($c->oid($project_id));
 
     if ($project) {
         $project->{_id} = $project->{id}->value;
@@ -82,29 +82,34 @@ sub update {
     my $c = shift;
 
     my $oid    = $c->oid($c->param('id'));
-    my $params = $c->req->params->to_hash;
+    my $params = $c->req->body_params->to_hash;
 
     my $v = $c->validation;
     $v->optional('title', 'trim')->size(2, 20);
     $v->optional('slug',  'trim')->size(2, 20);
+    $v->optional('description');
 
     return $c->error(422, '提供的数据不合法！')
         if $v->has_error;
 
     my $update_params = {};
 
-    $update_params->{title} = $params->{title}
+    $update_params->{title} = $v->output('title')
         if exists $params->{title};
 
-    $update_params->{slug} = $params->{slug}
+    $update_params->{slug} = $v->output('slug')
         if exists $params->{slug};
 
-    $update_params->{description} = $params->{description}
+    $update_params->{description} = $v->output('description')
         if exists $params->{description};
 
     $update_params->{updated_at} = time;
 
-    $project_model->update({_id => $oid}, {'$set' => $update_params});
+    my $res
+        = $project_model->update({_id => $oid}, {'$set' => $update_params});
+
+    return $c->error(400, '编辑 Project 失败！')
+        unless $res->acknowleged;
 
     my $project = $project_model->find_id($oid);
     $project->{_id} = $project->{_id}->value;
@@ -120,10 +125,15 @@ sub destroy {
 
     my $project_id = $c->param('id');
 
+    my $node_count
+        = MicroMis::Model::Node->count({project_id => $project_id});
     return $c->error(400, '该 Project 下存在有效信息，无法删除！')
-        if MicroMis::Model::Node->count({project_id => $project_id});
+        if $node_count;
 
-    $project_model->delete_one({_id => $c->oid($project_id)});
+    my $res = $project_model->delete_one({_id => $c->oid($project_id)});
+
+    return $c->error(400, '删除 Project失败！')
+        unless $res->acknowleged;
 
     $c->success({}, '成功删除 Project！');
 }

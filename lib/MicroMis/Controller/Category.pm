@@ -43,15 +43,14 @@ sub store {
     my $params = $c->req->params->to_hash;
 
     my $v = $c->validation;
-    $v->input($params);
     $v->required('title', 'trim')->size(2, 20);
     $v->optional('pid', 'trim')->like(qr/^[a-f\d]{24}$/);
 
     return $c->error(422, '提供的数据不合法！')
         if $v->has_error;
 
-    my $title = $v->param('title');
-    my $pid = $v->param('pid') || undef;
+    my $title = $v->output('title');
+    my $pid   = $v->output('pid') || undef;
 
     my $document = {
         title => $title,
@@ -77,7 +76,6 @@ sub store {
     }
 
     my $res = $cate_model->add($document);
-
     return $c->error(400, '添加分类失败！')
         unless $res->inserted_id;
 
@@ -113,7 +111,11 @@ sub update {
     my $update = {};
     $update->{pid}   = $c->oid($new_pid) unless !$new_pid;
     $update->{title} = $title            unless !$title;
-    $cate_model->update({_id => $oid}, {'$set' => $update});
+
+    my $res = $cate_model->update({_id => $oid}, {'$set' => $update});
+
+    return $c->error(400, '编辑分类失败！')
+        unless $res->acknowleged;
 
     $c->success({}, '编辑分类成功！');
 }
@@ -143,9 +145,12 @@ sub destroy {
         = MicroMis::Model::Node->count({cate_id => $c->oid($cate_id)});
 
     return $c->error(400, '该分类下存在有效信息，无法删除！')
-        if $node_num;
+        unless !$node_num;
 
-    $cate_model->delete_one({_id => $c->oid($cate_id)});
+    my $res = $cate_model->delete_one({_id => $c->oid($cate_id)});
+
+    return $c->error(400, '删除分类失败！')
+        unless $res->acknowleged;
 
     $c->success({}, '成功删除分类！');
 }
