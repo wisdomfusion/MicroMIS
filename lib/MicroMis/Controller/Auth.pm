@@ -90,20 +90,11 @@ sub renew_token {
 sub check {
     my $c = shift;
 
-    my $headers       = $c->req->headers;
-    my $authorization = $headers->authorization;
-
-    return $c->error(401, '未授权，未提供有效的令牌')
-        unless ($authorization && $authorization =~ /^Bearer/);
-
-    my ($_, $token) = split(' ', $authorization);
-
-    if ($token) {
-        $token = $c->jwt_decode($token);
-        return 1 if $token->{oid} && $token->{name} && $token->{exp} > time;
-    }
+    return 1 if $c->authed;
 
     $c->error(401, '未授权，请登录后重试');
+
+    0;
 }
 
 1;

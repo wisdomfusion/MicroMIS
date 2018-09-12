@@ -48,10 +48,15 @@ sub register {
     $app->helper(
         'jwt_decode' => sub {
             my ($c, $token) = @_;
-            return decode_jwt(
+
+            my $payload = decode_jwt(
                 token => $token,
                 key   => $app->config('jwt_secret')
             );
+
+            return $payload unless !$payload;
+
+            undef;
         }
     );
 
@@ -67,11 +72,13 @@ sub register {
 
             my ($_, $token) = split(' ', $authorization);
             if ($token) {
-                $token = $c->jwt_decode($token);
+                my $token_data = $c->jwt_decode($token);
+
                 return 1
-                    if $token->{oid}
-                    && $token->{name}
-                    && $token->{exp} > time;
+                    if $token_data
+                    && $token_data->{oid}
+                    && $token_data->{name}
+                    && $token_data->{exp} > time
             }
 
             0;

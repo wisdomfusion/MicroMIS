@@ -15,7 +15,7 @@ my $user_model = MicroMis::Model::User->new;
 # GET
 sub index {
     my $c      = shift;
-    my $params = $c->req->params->to_hash;
+    my $params = $c->req->query_params->to_hash;
 
     my $filter = {};
 
@@ -38,16 +38,16 @@ sub store {
     my $c = shift;
 
     my $v = $c->validation;
-    $v->required('name', 'trim');
-    $v->required('pass', 'trim');
-
-    my $name = $v->param('name');
-    my $pass = $v->param('pass');
+    $v->required('name', 'trim')->size(2, 20);
+    $v->required('pass', 'trim')->size(6, 20);
 
     return $c->error(422, '提供的数据不合法！')
         if $v->has_error;
 
-    return $c->error(400, '用户名已存在！')
+    my $name = $v->param('name');
+    my $pass = $v->param('pass');
+
+    return $c->error(400, '用户名已存在，无法添加！')
         if $user_model->find_one({name => $name});
 
     my $now      = time;
@@ -64,8 +64,7 @@ sub store {
     return $c->error(400, '添加用户失败！')
         unless $res->inserted_id;
 
-    my $oid  = $res->inserted_id;
-    my $user = $user_model->find_id($oid);
+    my $user = $user_model->find_id($res->inserted_id);
     $user->{_id} = $user->{_id}->value;
 
     $c->success({user => $user}, '成功添加用户！');
@@ -77,8 +76,12 @@ sub store {
 sub show {
     my $c = shift;
 
-    my $oid  = $c->oid($c->param('id'));
-    my $user = $user_model->find_id($oid);
+    my $user_id = $c->param('id');
+
+    return $c->error(422, '提供的数据不合法！')
+        if !$user_id || $user_id !~ qr/^[a-f\d]{24}$/;
+
+    my $user = $user_model->find_id($c->oid($user_id));
 
     if ($user) {
         $user->{_id} = $user->{_id}->value;

@@ -237,22 +237,51 @@ B<请求方法>
 
 GET
 
-B<请求参数>
-
-    NAME            NULL        TYPE          DESCRIPTION
-    -------------   ---------   -----------   --------------------
-
 B<响应参数>
 
     NAME            DESCRIPtion
     -------------   ---------------------
     _id
-    title
-    pid
-    order
+    title           分类标题
+    pid             父级分类 ID
+    children        子分类
+    order           排序
 
 B<响应示例>
 
+    {
+        "data": [
+            {
+                "_id": "5b936836421aa9e238c02e9c",
+                "children": [
+                    {
+                        "_id": "5b936e57421aa9e51cc02e9d",
+                        "order": 0,
+                        "pid": "5b936836421aa9e238c02e9c",
+                        "title": "test41"
+                    }
+                ],
+                "order": 0,
+                "pid": null,
+                "title": "test3"
+            },
+            {
+                "_id": "5b936e37421aa9e51cc02e9c",
+                "children": null,
+                "order": 0,
+                "pid": null,
+                "title": "test4"
+            },
+            {
+                "_id": "5b95e7e85120db1b7a2ce2fa",
+                "children": null,
+                "order": 0,
+                "pid": null,
+                "title": "test5"
+            }
+        ],
+        "message": ""
+    }
 
 =head3 添加分类
 
@@ -268,19 +297,15 @@ B<请求参数>
 
     NAME            NULL        TYPE          DESCRIPTION
     -------------   ---------   -----------   --------------------
-    pid
-    title
-
-B<响应参数>
-
-    NAME            DESCRIPtion
-    -------------   ---------------------
-    _id
-    title
-    pid
+    pid             NULL        string        父级分类 ID
+    title           NOT NULL    string        分类标题
 
 B<响应示例>
 
+{
+    "data": {},
+    "message": "成功添加分类！"
+}
 
 
 =head3 编辑分类
@@ -297,16 +322,15 @@ B<请求参数>
 
     NAME            NULL        TYPE          DESCRIPTION
     -------------   ---------   -----------   --------------------
-    pid
-    title
-
-B<响应参数>
-
-    NAME            DESCRIPtion
-    -------------   ---------------------
+    pid             NULL        string
+    title           NULL        string
 
 B<响应示例>
 
+    {
+        "data": {},
+        "message": "编辑分类成功！"
+    }
 
 
 =head3 分类排序
